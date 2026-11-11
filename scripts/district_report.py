@@ -157,7 +157,7 @@ def main():
         for r in out:
             w.writerow([r["rank"], r["district"], r["division"], r["source"]]
                        + [h["spd"] if h else "" for h in r["hourly"]]
-                       + [(f'{h["cmp"]} {h["dir"]}°' if h and h["dir"] is not None else (h["cmp"] if h else "")) for h in r["hourly"]]
+                       + [(f'{h["cmp"]} {h["dir"]}°' if h and h["dir"] is not None and h["cmp"] != "calm" else (h["cmp"] if h else "")) for h in r["hourly"]]
                        + [r["mean_spd"], r["net_dir"] if r["net_dir"] is not None else "", r["net_cmp"], r["resultant_spd"], r["steadiness"], r["calm_hours"]])
     print("wrote district report", rep["window"], rep["metar_counts"])
 
