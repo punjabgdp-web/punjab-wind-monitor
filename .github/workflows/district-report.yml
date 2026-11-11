@@ -1,0 +1,29 @@
+name: District wind report
+
+on:
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-data
+  cancel-in-progress: false
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build 6-hour district report
+        run: python scripts/district_report.py
+      - name: Commit
+        run: |
+          git config user.name  "wind-data-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/district_report.json data/district_report.csv
+          git diff --cached --quiet || { git commit -m "report: districts $(date -u +'%Y-%m-%d %H:%M UTC')"; git pull --rebase --autostash; git push; }
