@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Punjab Wind Animation — 6 h Observed + 6 h Forecast</title>
+<style>
+  :root{
+    --bg:#121211; --surface:#1a1a19; --surface-2:#232321; --line:#34342f;
+    --ink:#ecebe7; --ink-2:#b9b8b2; --ink-3:#8a8983;
+    --obs:#e8a33d; --fc:#6da7ec; --accent:#3987e5;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+  .wrap{max-width:1180px;margin:0 auto;padding:18px 18px 40px}
+  h1{font-size:20px;margin:0 0 4px;font-weight:650;letter-spacing:.1px}
+  .sub{color:var(--ink-2);margin:0 0 14px;font-size:13px}
+  .grid{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:16px}
+  @media (max-width:900px){.grid{grid-template-columns:1fr}}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:12px}
+  .mapcard{padding:10px;position:relative}
+  .mapbox{position:relative;width:100%;}
+  .mapbox canvas{position:absolute;left:0;top:0;width:100%;height:100%;display:block}
+  .clock{position:absolute;left:18px;top:16px;pointer-events:none;z-index:5}
+  .clock .t{font-size:30px;font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:.5px}
+  .clock .d{font-size:12px;color:var(--ink-2)}
+  .pill{display:inline-block;padding:2px 8px;border-radius:99px;font-size:11px;font-weight:650;letter-spacing:.4px;margin-top:4px}
+  .pill.obs{background:rgba(232,163,61,.16);color:var(--obs);border:1px solid rgba(232,163,61,.45)}
+  .pill.fc{background:rgba(109,167,236,.14);color:var(--fc);border:1px solid rgba(109,167,236,.45)}
+  .views{position:absolute;right:14px;top:14px;z-index:6;display:flex;gap:4px;background:rgba(18,18,17,.82);border:1px solid var(--line);border-radius:9px;padding:3px}
+  .views button{padding:5px 10px;font-size:12px;border:none;background:transparent;color:var(--ink-2)}
+  .views button.on{background:var(--accent);color:#fff}
+  .legend{position:absolute;right:18px;bottom:16px;background:rgba(18,18,17,.82);border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:11px;color:var(--ink-2);z-index:5}
+  .legend .bar{width:150px;height:8px;border-radius:4px;margin:4px 0 2px;background:linear-gradient(90deg,#256abf,#3987e5,#6da7ec,#9ec5f4,#cde2fb)}
+  .legend .ticks{display:flex;justify-content:space-between;width:150px}
+  .legend .sym{margin-top:6px;display:grid;grid-template-columns:18px 1fr;gap:2px 6px;align-items:center}
+  @media (max-width:600px){.legend .sym{display:none}.legend{right:8px;bottom:8px;padding:6px 8px}.legend .bar,.legend .ticks{width:110px}.clock .t{font-size:24px}}
+  .controls{display:flex;gap:10px;align-items:center;padding:10px 4px 2px;flex-wrap:wrap}
+  button,select{background:var(--surface-2);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:7px 12px;font:inherit;cursor:pointer}
+  button:hover,select:hover{border-color:#55554e}
+  button.primary{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600;min-width:84px}
+  .tl{flex:1;min-width:240px;position:relative;padding-top:2px}
+  .tl input[type=range]{width:100%;accent-color:var(--accent);margin:0}
+  .tlbar{position:relative;height:22px;margin-top:2px;font-size:11px;color:var(--ink-3)}
+  .tlbar .seg{position:absolute;top:0;height:5px;border-radius:3px}
+  .tlbar .lab{position:absolute;top:8px;transform:translateX(-50%);white-space:nowrap}
+  .tlbar .now{position:absolute;top:-4px;width:2px;height:12px;background:var(--ink);transform:translateX(-1px)}
+  .side{padding:14px}
+  .side h2{font-size:13px;margin:0 0 8px;color:var(--ink-2);font-weight:650;text-transform:uppercase;letter-spacing:.6px}
+  table{width:100%;border-collapse:collapse;font-size:12.5px}
+  th{text-align:left;color:var(--ink-3);font-weight:600;padding:4px 4px;border-bottom:1px solid var(--line)}
+  td{padding:5px 4px;border-bottom:1px solid #26261f;vertical-align:middle}
+  td.num{text-align:right;font-variant-numeric:tabular-nums}
+  .src{font-size:10.5px;color:var(--ink-3)}
+  .tag{font-size:10px;font-weight:700;padding:1px 6px;border-radius:99px;letter-spacing:.3px}
+  .tag.METAR{color:var(--obs);border:1px solid rgba(232,163,61,.5)}
+  .tag.TAF{color:var(--fc);border:1px solid rgba(109,167,236,.5)}
+  .tag.ECMWF{color:#9ec5f4;border:1px dashed rgba(158,197,244,.55)}
+  .tag.MODEL{color:#9ec5f4;border:1px dashed rgba(158,197,244,.55)}
+  .live-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#4cc38a;margin-right:6px;vertical-align:middle;box-shadow:0 0 0 3px rgba(76,195,138,.18)}
+  .stale-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#e8a33d;margin-right:6px;vertical-align:middle}
+  .tag.PWS{color:#e8a33d;border:1px dashed rgba(232,163,61,.55)}
+  .tag.LIVE{color:#9ec5f4;border:1px dashed rgba(158,197,244,.55)}
+  .note{font-size:12px;color:var(--ink-2);margin-top:12px;line-height:1.5}
+  .note b{color:var(--ink)}
+  .matrix{margin-top:16px;padding:14px;overflow-x:auto}
+  .matrix h2{font-size:13px;margin:0 0 4px;color:var(--ink-2);font-weight:650;text-transform:uppercase;letter-spacing:.6px}
+  .matrix p{margin:0 0 10px;color:var(--ink-3);font-size:12px}
+  .mx{border-collapse:separate;border-spacing:2px;min-width:700px}
+  .mx th{font-size:11px;text-align:center;border:none;padding:2px;color:var(--ink-3);font-variant-numeric:tabular-nums}
+  .mx th.rowh{text-align:left;color:var(--ink-2);white-space:nowrap;padding-right:8px;font-weight:550}
+  .mx td{border:none;padding:0;text-align:center;cursor:pointer;border-radius:6px;background:#1f1f1d}
+  .mx td.past{background:rgba(232,163,61,.06)}
+  .mx td.cur{outline:2px solid var(--ink);outline-offset:-2px}
+  .mx td:hover{background:#2c2c29}
+  .mx svg{display:block;margin:0 auto}
+  .mx .v{font-size:10px;color:var(--ink-2);font-variant-numeric:tabular-nums;line-height:1;padding-bottom:3px}
+  .tip{position:fixed;pointer-events:none;background:#0d0d0c;border:1px solid #4a4a44;border-radius:8px;padding:8px 10px;font-size:12px;z-index:50;display:none;max-width:260px;box-shadow:0 6px 18px rgba(0,0,0,.4)}
+  .tip b{font-size:13px}
+  .status{font-size:12px;color:var(--ink-2)}
+  .sources{margin-top:16px;padding:14px;font-size:12px;color:var(--ink-2)}
+  .sources h2{font-size:13px;margin:0 0 6px;color:var(--ink-2);font-weight:650;text-transform:uppercase;letter-spacing:.6px}
+  .sources ul{margin:4px 0 0 18px;padding:0}
+  .sources a{color:#86b6ef}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Wind direction &amp; flow — Punjab airports and surrounding stations</h1>
+  <p class="sub" id="sub">11 Nov 2026 · 04:00–16:00 PKT · observed station winds for the past 6 hours, then forecasts for the next 6 hours. Particles move <i>with</i> the wind (downwind); arrows at each site point where the air is going.</p>
+
+  <div class="grid">
+    <div class="card mapcard">
+      <div class="mapbox" id="mapbox">
+        <canvas id="base"></canvas>
+        <canvas id="flow"></canvas>
+        <canvas id="over"></canvas>
+        <div class="views"><button id="vP" class="on">Punjab</button><button id="vL">Lahore region</button></div>
+        <div class="clock"><div class="t" id="clockT">08:00</div><div class="d" id="clockD">Wed 11 Nov 2026 · PKT</div><span class="pill obs" id="clockPill">OBSERVED</span></div>
+        <div class="legend">
+          Wind speed (km/h)
+          <div class="bar"></div>
+          <div class="ticks"><span>0</span><span>5</span><span>10</span><span>15+</span></div>
+          <div class="sym">
+            <svg width="18" height="12"><line x1="2" y1="6" x2="14" y2="6" stroke="#ecebe7" stroke-width="2"/><path d="M14 6 L9 3 L9 9Z" fill="#ecebe7"/></svg><span>air moving toward</span>
+            <svg width="18" height="14"><circle cx="9" cy="7" r="5" fill="none" stroke="#ecebe7" stroke-width="1.5"/></svg><span>calm (0 kt)</span>
+            <svg width="18" height="14"><circle cx="9" cy="7" r="5" fill="none" stroke="#ecebe7" stroke-width="1.5" stroke-dasharray="2 2"/></svg><span>variable, ≤2 kt</span>
+          </div>
+        </div>
+      </div>
+      <div class="controls">
+        <button class="primary" id="play">▶ Play</button>
+        <div class="tl">
+          <input type="range" id="slider" min="0" max="12" step="0.01" value="6" aria-label="Time">
+          <div class="tlbar" id="tlbar"></div>
+        </div>
+        <select id="spd" aria-label="Playback speed">
+          <option value="0.35">0.5×</option>
+          <option value="0.7" selected>1×</option>
+          <option value="1.4">2×</option>
+        </select>
+      </div>
+      <div class="controls" style="padding-top:4px">
+        <button id="live">⟳ Reload latest data</button>
+        <span class="status" id="status">Loading latest airport data…</span>
+      </div>
+    </div>
+
+    <div class="card side">
+      <h2 id="tblHead">Sites at 08:00</h2>
+      <table>
+        <thead><tr><th>Site</th><th>Data</th><th class="num">From</th><th class="num">km/h</th><th class="num">kt</th></tr></thead>
+        <tbody id="tbody"></tbody>
+      </table>
+      <div class="note" id="reading"></div>
+    </div>
+  </div>
+
+  <div class="card matrix">
+    <h2>Hour-by-hour wind arrows</h2>
+    <p>Each arrow points downwind; the number is speed in km/h. Shaded columns are observations; the outlined column is the hour on the map. Click any cell to jump there.</p>
+    <table class="mx" id="mx"></table>
+  </div>
+
+  <div class="card sources">
+    <h2>Data &amp; method</h2>
+    <div id="method">
+      <b>Observed (past 6 h):</b> METAR reports for Islamabad (OPIS), Sialkot (OPST), Lahore (OPLA), Amritsar (VIAR), Faisalabad (OPFA), Multan (OPMT), D.G. Khan (OPDG), Bahawalpur (OPBW) and Rahim Yar Khan (OPRK), from NOAA's Aviation Weather Center. For each hour the report closest to the hour is used.<br>
+      <b>Forecast (next 6 h):</b> each airport's official TAF (base, FM and BECMG groups; TEMPO/PROB groups ignored).<br>
+      <b>Gaps:</b> airports that publish no report for an hour, the city reference points and the background grid use the Open-Meteo model (10 m wind), tagged <span class="tag MODEL">MODEL</span>. Several smaller Punjab airports (Rahim Yar Khan, Bahawalpur, D.G. Khan) often publish no METAR, so they will usually show model values.<br>
+      <b>Updates:</b> a GitHub Actions job rebuilds <code>data/latest.json</code> every 30 minutes (GitHub may delay scheduled runs by a few minutes). The page checks for a new file every 5 minutes.<br>
+      <b>Flow field:</b> inverse-distance interpolation between sites and linear between hours. Particles fade with distance from the nearest site.
+      <ul>
+        <li><a href="https://aviationweather.gov/data/api/" target="_blank" rel="noopener">NOAA Aviation Weather Center — Data API (METAR, TAF)</a></li>
+        <li><a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo — weather model API</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="tip" id="tip"></div>
+
+<script>
+/* ---------------- Snapshot data (mined 11 Nov 2026, ~10:30 PKT) ---------------- */
+const KT = 1.852, MPH = 1.609;
+const C = {N:0,NNE:22.5,NE:45,ENE:67.5,E:90,ESE:112.5,SE:135,SSE:157.5,S:180,SSW:202.5,SW:225,WSW:247.5,W:270,WNW:292.5,NW:315,NNW:337.5};
+const ob  = (d,kt,note)=>({dir:d,spd:kt*KT,src:'METAR',note});
+const calm= (src='METAR',note)=>({calm:true,spd:0,src,note});
+const taf = (d,kt,note)=>({dir:d,spd:kt*KT,src:'TAF',note});
+const vrb = (kt,note)=>({vrb:true,spd:kt*KT,src:'TAF',note});
+const ec  = (c,kmh)=>({dir:C[c],spd:kmh,src:'ECMWF'});
+const N_ = null;
+const NM='METAR not yet published — TAF shown';
+// slots: 04 05 06 07 08 09 10 | 11 12 13 14 15 16
+const SNAP = {
+  times:['04:00','05:00','06:00','07:00','08:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00'],
+  dateLabel:'Wed 11 Nov 2026 · PKT',
+  nowIdx:6,
+  sites:[
+    {id:'OPIS',major:1,name:'Islamabad Int\'l (OPIS) — ECMWF forecast',short:'Islamabad',lat:33.549,lon:72.826,
+      s:[N_,N_,N_,N_,N_,N_,N_,ec('S',3),ec('W',3),ec('SW',1),ec('SW',6),ec('W',5),ec('W',3)]},
+    {id:'OPST',major:1,name:'Sialkot Int\'l Airport (OPST)',short:'Sialkot',lat:32.5356,lon:74.3639,
+      s:[calm(),calm(),ob(130,6),ob(230,8),ob(90,6),taf(270,5,NM),taf(270,5,NM),
+         taf(270,5),taf(270,5),taf(270,8),taf(270,8),taf(270,8),taf(270,8)]},
+    {id:'OPLA',major:1,name:'Lahore Allama Iqbal Int\'l (OPLA)',short:'Lahore AIIAP',lat:31.5216,lon:74.4036,
+      s:[calm(),calm(),calm(),ob(220,4),ob(210,2,'07:30 report (latest published)'),vrb(2,NM),vrb(2,NM),
+         taf(340,3),taf(340,3),taf(340,3),taf(330,4),taf(330,4),taf(330,4)]},
+    {id:'VIAR',major:1,name:'Amritsar Airport (VIAR, India)',short:'Amritsar',lat:31.7078,lon:74.7992,
+      s:[N_,N_,N_,N_,calm(),N_,N_,N_,N_,N_,N_,N_,N_]},
+    {id:'OPMT',major:1,name:'Multan Int\'l Airport (OPMT)',short:'Multan',lat:30.2032,lon:71.4191,
+      s:[calm('METAR','vis 700 m'),calm('METAR','vis 600 m'),calm('METAR','vis 500 m'),ob(50,4,'vis 400 m'),ob(50,4,'vis 400 m'),calm('METAR','vis 400 m'),calm('METAR','vis 600 m'),
+         taf(50,6),taf(50,6),taf(230,6),taf(230,6),taf(230,6),taf(230,6)]},
+    {id:'RYK',major:1,name:'Rahim Yar Khan (OPRK area)',short:'Rahim Yar Khan',lat:28.39,lon:70.29,
+      s:[N_,N_,N_,N_,N_,N_,{dir:0,spd:3*MPH,src:'PWS',note:'10:31 personal weather station; airport issues no METAR'},
+         ec('SW',7),ec('SW',8),ec('W',9),ec('SW',10),ec('SW',10),ec('SW',10)]},
+    {id:'LHR',name:'Lahore city — ECMWF forecast',short:'Lahore city',lat:31.55,lon:74.30,
+      s:[N_,N_,N_,N_,N_,N_,N_,ec('NW',4),ec('NW',4),ec('NW',7),ec('NW',7),ec('NW',7),ec('NW',7)]},
+    {id:'SKP',name:'Sheikhupura — ECMWF forecast',short:'Sheikhupura',lat:31.713,lon:73.978,
+      s:[N_,N_,N_,N_,N_,N_,N_,ec('NW',6),ec('NW',6),ec('NW',6),ec('NW',6),ec('NW',7),ec('NW',6)]},
+    {id:'GRW',name:'Gujranwala — ECMWF forecast',short:'Gujranwala',lat:32.15,lon:74.19,
+      s:[N_,N_,N_,N_,N_,N_,N_,ec('NW',6),ec('NW',6),ec('NW',9),ec('NW',9),ec('NW',9),ec('NW',9)]},
+    {id:'KSR',name:'Kasur — ECMWF forecast',short:'Kasur',lat:31.117,lon:74.433,
+      s:[N_,N_,N_,N_,N_,N_,N_,ec('W',3),ec('W',5),ec('NW',6),ec('NW',7),ec('NW',7),ec('NW',7)]},
+    {id:'NRW',name:'Narowal — ECMWF forecast',short:'Narowal',lat:32.10,lon:74.867,
+      s:[N_,N_,N_,N_,N_,N_,N_,ec('W',3),ec('W',7),ec('NW',8),ec('W',9),ec('W',9),ec('W',9)]},
+  ],
+  grid:[]
+};
+
+/* ---------------- State ---------------- */
+let D = SNAP;
+let T = SNAP.nowIdx, playing = false, rate = 0.7;
+const VIEWS={
+  P:{lon0:69.2,lon1:75.6,lat0:27.7,lat1:34.1,grid:1,fade0:70,fade1:260,places:'P'},
+  L:{lon0:73.78,lon1:75.08,lat0:30.98,lat1:32.70,grid:0.25,fade0:35,fade1:105,places:'L'}
+};
+let VIEW='P';
+const BOUNDS = {...VIEWS.P};
+let COSL = Math.cos(30.9*Math.PI/180);
+function setView(v){VIEW=v;Object.assign(BOUNDS,VIEWS[v]);COSL=Math.cos((BOUNDS.lat0+BOUNDS.lat1)/2*Math.PI/180);
+  document.getElementById('vP').classList.toggle('on',v==='P');document.getElementById('vL').classList.toggle('on',v==='L');resize();}
+
+/* ---------------- Helpers ---------------- */
+const ramp = ['#256abf','#3987e5','#6da7ec','#9ec5f4','#cde2fb'];
+function hex2rgb(h){return [parseInt(h.slice(1,3),16),parseInt(h.slice(3,5),16),parseInt(h.slice(5,7),16)]}
+const rampRGB = ramp.map(hex2rgb);
+function speedColor(kmh,a=1){
+  const x=Math.max(0,Math.min(1,kmh/15))*(rampRGB.length-1);
+  const i=Math.min(rampRGB.length-2,Math.floor(x)), f=x-i;
+  const c=rampRGB[i].map((v,k)=>Math.round(v+(rampRGB[i+1][k]-v)*f));
+  return `rgba(${c[0]},${c[1]},${c[2]},${a})`;
+}
+const COMP=['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSW','SW','WSW','W','WNW','NW','NNW'];
+const compass = d => COMP[Math.round(((d%360)+360)%360/22.5)%16];
+function uv(o){ if(!o||o.calm||o.vrb) return [0,0]; const r=o.dir*Math.PI/180; return [-o.spd*Math.sin(r), -o.spd*Math.cos(r)]; } // toward-vector, u east, v north
+function hav(a,b,c,d){const R=6371,t=Math.PI/180,dl=(c-a)*t,dn=(d-b)*t;const x=Math.sin(dl/2)**2+Math.cos(a*t)*Math.cos(c*t)*Math.sin(dn/2)**2;return 2*R*Math.asin(Math.sqrt(x));}
+
+/* value of a site at fractional time t */
+function siteAt(site,t){
+  const s=site.s, i=Math.floor(t), f=t-i;
+  const a=s[i], b=s[Math.min(i+1,s.length-1)];
+  if(a&&b){const ua=uv(a),ub=uv(b);return {u:ua[0]+(ub[0]-ua[0])*f,v:ua[1]+(ub[1]-ua[1])*f};}
+  const n = f<0.5 ? a : b;
+  if(n){const q=uv(n);return {u:q[0],v:q[1]};}
+  return null;
+}
+function activeAt(t){
+  const out=[];
+  for(const st of D.sites.concat(D.grid)){const r=siteAt(st,t); if(r) out.push({lat:st.lat,lon:st.lon,u:r.u,v:r.v});}
+  return out;
+}
+
+/* ---------------- Canvas setup ---------------- */
+const box=document.getElementById('mapbox'), cBase=document.getElementById('base'), cFlow=document.getElementById('flow'), cOver=document.getElementById('over');
+const gB=cBase.getContext('2d'), gF=cFlow.getContext('2d'), gO=cOver.getContext('2d');
+let W=0,H=0,DPR=1;
+function lonlat2xy(lon,lat){return [(lon-BOUNDS.lon0)/(BOUNDS.lon1-BOUNDS.lon0)*W, (BOUNDS.lat1-lat)/(BOUNDS.lat1-BOUNDS.lat0)*H];}
+function xy2lonlat(x,y){return [BOUNDS.lon0+x/W*(BOUNDS.lon1-BOUNDS.lon0), BOUNDS.lat1-y/H*(BOUNDS.lat1-BOUNDS.lat0)];}
+function resize(){
+  const w=box.clientWidth;
+  const aspect=((BOUNDS.lat1-BOUNDS.lat0))/((BOUNDS.lon1-BOUNDS.lon0)*COSL);
+  let h=Math.round(w*aspect); const maxH=Math.max(420,window.innerHeight*0.78);
+  if(h>maxH){h=maxH;}
+  box.style.height=h+'px';
+  W=w; H=h; DPR=window.devicePixelRatio||1;
+  for(const c of [cBase,cFlow,cOver]){c.width=W*DPR;c.height=H*DPR;c.getContext('2d').setTransform(DPR,0,0,DPR,0,0);}
+  // keep geographic aspect: widen lon range if box is clipped
+  const V=VIEWS[VIEW], lonSpan=(V.lat1-V.lat0)/COSL*(W/H), mid=(V.lon0+V.lon1)/2;
+  BOUNDS.lon0=mid-lonSpan/2; BOUNDS.lon1=mid+lonSpan/2;
+  drawBase(); seed();
+}
+const PLACES={ // reference towns without usable wind data
+  L:[{n:'Muridke',lat:31.802,lon:74.255},{n:'Raiwind',lat:31.248,lon:74.215},{n:'Wagah',lat:31.604,lon:74.573},
+     {n:'Nankana Sahib',lat:31.45,lon:73.71},{n:'Pattoki',lat:31.02,lon:73.85}],
+  P:[{n:'Faisalabad',lat:31.42,lon:73.08},{n:'Bahawalpur',lat:29.39,lon:71.68},{n:'D.G. Khan',lat:30.05,lon:70.63},
+     {n:'Sargodha',lat:32.08,lon:72.67},{n:'Sahiwal',lat:30.66,lon:73.11},{n:'Jhang',lat:31.27,lon:72.32},
+     {n:'Bahawalnagar',lat:29.99,lon:73.25},{n:'Mianwali',lat:32.58,lon:71.54},
+     {n:'Sadiqabad',lat:28.31,lon:70.13},{n:'Layyah',lat:30.96,lon:70.94},{n:'Jhelum',lat:32.94,lon:73.73}]
+};
+function drawBase(){
+  gB.clearRect(0,0,W,H);
+  gB.fillStyle='#1a1a19'; gB.fillRect(0,0,W,H);
+  gB.strokeStyle='rgba(255,255,255,.06)'; gB.lineWidth=1; gB.font='10px system-ui'; gB.fillStyle='rgba(255,255,255,.28)';
+  const gs=VIEWS[VIEW].grid, lb=VIEW==='P'?1:0.5;
+  for(let lon=Math.ceil(BOUNDS.lon0/gs)*gs; lon<BOUNDS.lon1; lon+=gs){const [x]=lonlat2xy(lon,0);gB.beginPath();gB.moveTo(x,0);gB.lineTo(x,H);gB.stroke(); if(Math.abs(lon/lb-Math.round(lon/lb))<1e-6) gB.fillText(lon.toFixed(VIEW==='P'?0:1)+'°E',x+3,12);}
+  for(let lat=Math.ceil(BOUNDS.lat0/gs)*gs; lat<BOUNDS.lat1; lat+=gs){const [,y]=lonlat2xy(0,lat);gB.beginPath();gB.moveTo(0,y);gB.lineTo(W,y);gB.stroke(); if(Math.abs(lat/lb-Math.round(lat/lb))<1e-6) gB.fillText(lat.toFixed(VIEW==='P'?0:1)+'°N',W-40,y-3);}
+  // scale bar 25 km
+  const midLat=(BOUNDS.lat0+BOUNDS.lat1)/2, kmPerPx = hav(midLat,BOUNDS.lon0,midLat,BOUNDS.lon1)/W, sk=VIEW==='P'?100:25, px=sk/kmPerPx;
+  gB.strokeStyle='rgba(255,255,255,.5)'; gB.lineWidth=2; gB.beginPath(); gB.moveTo(18,H-26); gB.lineTo(18+px,H-26); gB.stroke();
+  gB.fillStyle='rgba(255,255,255,.55)'; gB.fillText(sk+' km',18,H-32);
+  // reference towns
+  gB.font='11px system-ui';
+  for(const p of PLACES[VIEWS[VIEW].places]){const [x,y]=lonlat2xy(p.lon,p.lat); gB.fillStyle='rgba(255,255,255,.35)'; gB.beginPath();gB.arc(x,y,2,0,7);gB.fill(); gB.fillStyle='rgba(255,255,255,.38)'; gB.fillText(p.n,x+5,y+4);}
+}
+
+/* ---------------- Particles ---------------- */
+let P=[];
+function seed(){
+  const n=Math.round(Math.min(2200, W*H/260));
+  P=[]; for(let i=0;i<n;i++) P.push(newP(true));
+  gF.clearRect(0,0,W,H);
+}
+function newP(rand){return {x:Math.random()*W,y:Math.random()*H,age:rand?Math.random()*90:0,life:60+Math.random()*60};}
+let ACT=[];
+function field(x,y){
+  const [lon,lat]=xy2lonlat(x,y);
+  let su=0,sv=0,sw=0,dmin=1e9;
+  for(const a of ACT){
+    const dx=(a.lon-lon)*111*COSL, dy=(a.lat-lat)*111, d2=dx*dx+dy*dy+4;
+    const d=Math.sqrt(d2); if(d<dmin)dmin=d;
+    const w=1/d2; su+=a.u*w; sv+=a.v*w; sw+=w;
+  }
+  if(!sw) return {u:0,v:0,dmin:1e9};
+  return {u:su/sw,v:sv/sw,dmin};
+}
+let FC=0;
+const PXK=0.16; // pixels per frame per km/h at base map width
+function stepFlow(){
+  gF.globalCompositeOperation='destination-out';
+  gF.fillStyle=VIEW==='P'?'rgba(0,0,0,0.045)':'rgba(0,0,0,0.075)'; gF.fillRect(0,0,W,H);
+  if((++FC)%20===0){gF.fillStyle='rgba(0,0,0,0.3)';gF.fillRect(0,0,W,H);} // clear 8-bit residue so old trails don't ghost
+  gF.globalCompositeOperation='source-over';
+  gF.lineWidth=1.3; gF.lineCap='round';
+  const k=PXK*(W/700);
+  for(const p of P){
+    const f=field(p.x,p.y), s=Math.hypot(f.u,f.v);
+    const nx=p.x+f.u*k, ny=p.y-f.v*k;
+    const V=VIEWS[VIEW]; const conf=Math.max(0.12,Math.min(1,1-(f.dmin-V.fade0)/(V.fade1-V.fade0)));
+    if(s>0.15){
+      gF.strokeStyle=speedColor(s,0.85*conf);
+      gF.beginPath(); gF.moveTo(p.x,p.y); gF.lineTo(nx,ny); gF.stroke();
+    } else if(Math.random()<0.04){ // calm: faint shimmer dots
+      gF.fillStyle=`rgba(37,106,191,${0.5*conf})`; gF.fillRect(p.x,p.y,1.2,1.2);
+    }
+    p.x=nx;p.y=ny;p.age++;
+    if(p.age>p.life||p.x<0||p.x>W||p.y<0||p.y>H) Object.assign(p,newP(false));
+  }
+}
+
+/* ---------------- Overlay: site arrows ---------------- */
+function nearestObj(site,t){const i=Math.round(t); return site.s[i]||null;}
+function drawOver(){
+  gO.clearRect(0,0,W,H);
+  // live grid arrows (light)
+  for(const g of D.grid){
+    const r=siteAt(g,T); if(!r) continue; const [x,y]=lonlat2xy(g.lon,g.lat);
+    const s=Math.hypot(r.u,r.v); if(s<0.3){gO.fillStyle='rgba(255,255,255,.25)';gO.fillRect(x-1,y-1,2,2);continue;}
+    arrow(x,y,r.u/s,r.v/s,6+s*1.2,'rgba(236,235,231,.35)',1.2,5);
+  }
+  const ti=Math.round(T);
+  for(const st of D.sites){
+    const [x,y]=lonlat2xy(st.lon,st.lat); const o=st.s[ti];
+    const hasAny=st.s.some(Boolean);
+    // marker dot
+    gO.fillStyle = o ? '#ecebe7' : 'rgba(236,235,231,.35)';
+    gO.beginPath(); gO.arc(x,y,3.2,0,7); gO.fill();
+    if(o){
+      if(o.calm||o.vrb){
+        gO.strokeStyle='#ecebe7'; gO.lineWidth=1.6; gO.setLineDash(o.vrb?[3,3]:[]);
+        gO.beginPath(); gO.arc(x,y,9,0,7); gO.stroke(); gO.setLineDash([]);
+      } else {
+        const r=siteAt(st,T)||{u:0,v:0}; const q=uv(o); const s=Math.hypot(q[0],q[1]);
+        const use = Math.hypot(r.u,r.v)>0.2 ? r : {u:q[0],v:q[1]}; const ss=Math.hypot(use.u,use.v);
+        arrow(x,y,use.u/ss,use.v/ss,14+Math.min(s,16)*2.2,'#ecebe7',2.4,8);
+      }
+    }
+    // label
+    if(VIEW==='P' && !st.major) continue;
+    gO.font='600 12px system-ui'; const lab=st.short;
+    const val = o ? (o.calm?'calm':(o.vrb?`VRB ${o.spd.toFixed(0)} km/h`:`${compass(o.dir)} ${o.spd.toFixed(0)} km/h`)) : (hasAny?'no data this hour':'');
+    const left = VIEW==='L' ? st.id==='LHR' : (st.id==='VIAR'?false:(st.id==='OPLA'));
+    const lx=left?x-10:x+10, ly=(VIEW==='P'&&st.id==='OPLA')?y+22:y-19;
+    gO.textAlign=left?'right':'left';
+    gO.lineWidth=3; gO.strokeStyle='rgba(18,18,17,.85)'; gO.strokeText(lab,lx,ly); gO.fillStyle=o?'#ecebe7':'rgba(236,235,231,.5)'; gO.fillText(lab,lx,ly);
+    gO.font='11px system-ui'; gO.strokeText(val,lx,ly+13); gO.fillStyle=o?'#b9b8b2':'rgba(185,184,178,.45)'; gO.fillText(val,lx,ly+13);
+    gO.textAlign='left';
+  }
+}
+function arrow(x,y,ux,vy,len,col,lw,head){
+  const ex=x+ux*len, ey=y-vy*len, ang=Math.atan2(ey-y,ex-x);
+  gO.strokeStyle='rgba(18,18,17,.7)'; gO.lineWidth=lw+2.5; gO.beginPath(); gO.moveTo(x,y); gO.lineTo(ex,ey); gO.stroke();
+  gO.strokeStyle=col; gO.lineWidth=lw; gO.beginPath(); gO.moveTo(x,y); gO.lineTo(ex,ey); gO.stroke();
+  gO.fillStyle=col; gO.beginPath(); gO.moveTo(ex+Math.cos(ang)*2,ey+Math.sin(ang)*2);
+  gO.lineTo(ex-Math.cos(ang-0.45)*head,ey-Math.sin(ang-0.45)*head); gO.lineTo(ex-Math.cos(ang+0.45)*head,ey-Math.sin(ang+0.45)*head); gO.closePath(); gO.fill();
+}
+
+/* ---------------- UI ---------------- */
+const slider=document.getElementById('slider'), btn=document.getElementById('play');
+function fmtTime(t){const base=D.times[0].split(':').map(Number); let mins=Math.round((base[0]*60+base[1])+t*60); mins=((mins%1440)+1440)%1440; return String(Math.floor(mins/60)).padStart(2,'0')+':'+String(mins%60).padStart(2,'0');}
+function buildTimeline(){
+  const tl=document.getElementById('tlbar'); const n=D.times.length-1; const nowp=D.nowIdx/n*100;
+  tl.innerHTML=`<div class="seg" style="left:0;width:${nowp}%;background:rgba(232,163,61,.55)"></div>
+    <div class="seg" style="left:${nowp}%;width:${100-nowp}%;background:rgba(109,167,236,.5)"></div>
+    <div class="now" style="left:${nowp}%"></div>
+    <div class="lab" style="left:${nowp/2}%">◀ observed (past 6 h)</div>
+    <div class="lab" style="left:${nowp+(100-nowp)/2}%">forecast (next 6 h) ▶</div>`;
+  slider.max=n;
+}
+let lastHour=-1;
+function updateUI(){
+  document.getElementById('clockT').textContent=fmtTime(T);
+  document.getElementById('clockD').textContent=D.dateLabel;
+  const isObs = Math.round(T)<=D.nowIdx;
+  const pill=document.getElementById('clockPill'); pill.className='pill '+(isObs?'obs':'fc');
+  pill.textContent = Math.round(T)===D.nowIdx ? 'LATEST OBSERVATION' : (isObs?'OBSERVED':'FORECAST');
+  const h=Math.round(T); if(h!==lastHour){lastHour=h; buildTable(h); markMatrix(h);}
+}
+function buildTable(h){
+  document.getElementById('tblHead').textContent='Sites at '+D.times[h];
+  const tb=document.getElementById('tbody'); let html='';
+  for(const st of D.sites){
+    const o=st.s[h];
+    if(!o){html+=`<tr><td>${st.short}</td><td class="src">—</td><td class="num src" colspan="3">no report</td></tr>`;continue;}
+    const tag=o.src;
+    const from = o.calm?'calm':(o.vrb?'variable':`${compass(o.dir)} <span class="src">${Math.round(o.dir)}°</span>`);
+    html+=`<tr><td>${st.short}${o.note?`<div class="src">${o.note}</div>`:''}</td><td><span class="tag ${tag}">${tag}</span></td><td class="num">${from}</td><td class="num">${o.spd.toFixed(1)}</td><td class="num">${(o.spd/KT).toFixed(0)}</td></tr>`;
+  }
+  tb.innerHTML=html;
+  document.getElementById('reading').innerHTML = D===SNAP ? readingFor(h) : autoReading(h);
+}
+function readingFor(h){
+  if(h<=2) return '<b>Pre-dawn (04–06 h):</b> dead calm across the plains. Lahore, Sialkot (until 06:00) and Multan all reported 0 kt, with Lahore in mist (1.5 km) and Multan in fog (500–700 m). Air is stagnant, so pollutants pile up near their sources.';
+  if(h<=4) return '<b>Early morning (07–08 h):</b> only a faint drift. Lahore had a south-westerly at 2–4 kt and Multan a north-easterly at 4 kt with visibility down to 400 m. Sialkot was gusty and shifting (SE → SW → E, 6–10 kt), and Amritsar was calm in shallow fog.';
+  if(h<=6) return '<b>Mid-morning (09–10 h):</b> Multan fell calm again in 400–600 m fog. In Rahim Yar Khan a local station read a light northerly (~5 km/h). For Lahore and Sialkot no new reports had been published yet, so their forecasts (variable ≤2 kt; W 5 kt) are shown.';
+  if(h<=8) return '<b>Late morning (11–12 h):</b> forecasts show light winds setting in from different directions. North-west at 3 kt for Lahore, north-easterly 6 kt at Multan, westerly 5 kt at Sialkot, and south-westerly 7–8 km/h at Rahim Yar Khan.';
+  return '<b>Afternoon (13–16 h):</b> better mixing. A north-westerly of 6–9 km/h covers the Lahore–Gujranwala belt, and Sialkot reaches W 8 kt. In the south Multan turns south-westerly (6 kt) and Rahim Yar Khan picks up to SW 10 km/h, so air there arrives from the Sindh side. Islamabad stays light (W/SW 3–6 km/h).';
+}
+
+/* matrix */
+function buildMatrix(){
+  const mx=document.getElementById('mx'); let h='<tr><th></th>'+D.times.map((t,i)=>`<th>${t}</th>`).join('')+'</tr>';
+  for(const st of D.sites){
+    h+=`<tr><th class="rowh">${st.short}</th>`;
+    st.s.forEach((o,i)=>{
+      const past=i<=D.nowIdx?'past':'';
+      if(!o){h+=`<td class="${past}" data-i="${i}"><div style="height:38px;line-height:38px;color:#4a4a44;font-size:11px">·</div></td>`;return;}
+      let svg;
+      if(o.calm||o.vrb){svg=`<svg width="26" height="26"><circle cx="13" cy="13" r="6" fill="none" stroke="#b9b8b2" stroke-width="1.5" ${o.vrb?'stroke-dasharray="2 2"':''}/></svg>`;}
+      else{const rot=o.dir+180; const col=speedColor(o.spd); svg=`<svg width="26" height="26" viewBox="-13 -13 26 26"><g transform="rotate(${rot})"><line x1="0" y1="8" x2="0" y2="-6" stroke="${col}" stroke-width="2.2" stroke-linecap="round"/><path d="M0 -10 L-4.5 -3 L4.5 -3Z" fill="${col}"/></g></svg>`;}
+      h+=`<td class="${past}" data-i="${i}" title="${st.short} ${D.times[i]}: ${o.calm?'calm':(o.vrb?'variable':'from '+compass(o.dir)+' ('+Math.round(o.dir)+'°)')}, ${o.spd.toFixed(1)} km/h · ${o.src}">${svg}<div class="v">${o.calm?'calm':(o.vrb?'vrb':o.spd.toFixed(0))}</div></td>`;
+    });
+    h+='</tr>';
+  }
+  mx.innerHTML=h;
+  mx.querySelectorAll('td[data-i]').forEach(td=>td.addEventListener('click',()=>{T=+td.dataset.i;slider.value=T;setPlaying(false);lastHour=-1;}));
+}
+function markMatrix(hh){document.querySelectorAll('#mx td[data-i]').forEach(td=>td.classList.toggle('cur',+td.dataset.i===hh));}
+
+function setPlaying(p){playing=p; btn.textContent=p?'❚❚ Pause':'▶ Play';}
+btn.addEventListener('click',()=>{ if(!playing && T>=D.times.length-1-0.001){T=0;} setPlaying(!playing);});
+slider.addEventListener('input',()=>{T=+slider.value; setPlaying(false);});
+document.getElementById('spd').addEventListener('change',e=>rate=+e.target.value);
+window.addEventListener('keydown',e=>{if(e.code==='Space'&&e.target===document.body){e.preventDefault();btn.click();}});
+
+/* tooltip */
+const tip=document.getElementById('tip');
+cOver.addEventListener('mousemove',e=>{
+  const r=cOver.getBoundingClientRect(), mx=e.clientX-r.left, my=e.clientY-r.top;
+  let best=null,bd=18;
+  for(const st of D.sites){const [x,y]=lonlat2xy(st.lon,st.lat); const d=Math.hypot(x-mx,y-my); if(d<bd){bd=d;best=st;}}
+  if(!best){tip.style.display='none';return;}
+  const h=Math.round(T), o=best.s[h];
+  tip.innerHTML=`<b>${best.name}</b><br>${D.times[h]} PKT · ${best.lat.toFixed(3)}°N ${best.lon.toFixed(3)}°E<br>`+
+    (o?`${o.calm?'Calm':(o.vrb?'Variable direction':'From '+compass(o.dir)+' ('+Math.round(o.dir)+'°)')} · ${o.spd.toFixed(1)} km/h (${(o.spd/KT).toFixed(0)} kt)<br><span style="color:#8a8983">${o.src==='METAR'?'Observed station report':o.src==='TAF'?'Official aerodrome forecast':o.src==='LIVE'||o.src==='MODEL'?'Open-Meteo model value':o.src==='PWS'?'Personal weather station (observed)':'ECMWF model forecast'}${o.note?' · '+o.note:''}</span>`:'<span style="color:#8a8983">No report for this hour</span>');
+  tip.style.display='block'; tip.style.left=Math.min(e.clientX+14,window.innerWidth-270)+'px'; tip.style.top=(e.clientY+14)+'px';
+});
+cOver.addEventListener('mouseleave',()=>tip.style.display='none');
+
+/* ---------------- Live refresh (works when opened outside a sandbox that blocks network) ---------------- */
+async function loadOpenMeteoDirect(){
+  const st=document.getElementById('status'); st.textContent='Fetching Open-Meteo model data…';
+  const named=SNAP.sites.slice();
+  const grid=[]; for(let la=28.0;la<=33.9;la+=0.65) for(let lo=69.6;lo<=75.4;lo+=0.72) grid.push({lat:+la.toFixed(2),lon:+lo.toFixed(2)});
+  for(const p of PLACES.P) named.push({id:'P_'+p.n,name:p.n+' (model)',short:p.n,lat:p.lat,lon:p.lon,s:[]});
+  const pts=named.concat(grid);
+  const url='https://api.open-meteo.com/v1/forecast?latitude='+pts.map(p=>p.lat).join(',')+'&longitude='+pts.map(p=>p.lon).join(',')+
+    '&hourly=wind_speed_10m,wind_direction_10m&past_hours=6&forecast_hours=7&timezone=Asia%2FKarachi&wind_speed_unit=kmh';
+  try{
+    const ctl=new AbortController(); const to=setTimeout(()=>ctl.abort(),12000);
+    const res=await fetch(url,{signal:ctl.signal}); clearTimeout(to);
+    if(!res.ok) throw new Error('HTTP '+res.status);
+    let js=await res.json(); if(!Array.isArray(js)) js=[js];
+    const times=js[0].hourly.time.map(s=>s.slice(11,16));
+    const date=new Date(js[0].hourly.time[6]+':00');
+    const mk=h=>h.hourly.time.map((_,i)=>{const s=h.hourly.wind_speed_10m[i],d=h.hourly.wind_direction_10m[i]; if(s==null||d==null) return null; return s<0.5?{calm:true,spd:0,src:'LIVE'}:{dir:d,spd:s,src:'LIVE'};});
+    const sites=named.map((s,i)=>({...s,name:s.name.replace(/ — ECMWF forecast/,'')+' — Open-Meteo model',major:1,s:mk(js[i])}));
+    const g=grid.map((p,k)=>({...p,s:mk(js[named.length+k])}));
+    D={times,dateLabel:date.toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short',year:'numeric'})+' · PKT',nowIdx:6,sites,grid:g};
+    T=D.nowIdx; slider.value=T; lastHour=-1; buildTimeline(); buildMatrix();
+    st.textContent='Live: Open-Meteo model winds, loaded '+new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'})+'. (Model values at the same sites, not station reports.)';
+  }catch(err){
+    st.textContent='Live loading is blocked in this viewer. Download the HTML file and open it in your browser to refresh with current data. Showing the 10:30 PKT snapshot.';
+  }
+}
+
+/* ---------------- Loop ---------------- */
+let last=performance.now();
+function loop(now){
+  const dt=Math.min(0.05,(now-last)/1000); last=now;
+  if(playing){T+=dt*rate; if(T>=D.times.length-1){T=D.times.length-1;setPlaying(false);} slider.value=T;}
+  ACT=activeAt(T);
+  stepFlow(); drawOver(); updateUI();
+  requestAnimationFrame(loop);
+}
+window.addEventListener('resize',()=>{Object.assign(BOUNDS,VIEWS[VIEW]);resize();});
+document.getElementById('vP').addEventListener('click',()=>setView('P'));
+document.getElementById('vL').addEventListener('click',()=>setView('L'));
+
+/* ---------------- Live data (data/latest.json, rebuilt every 30 min by GitHub Actions) ---------------- */
+function applyData(js,label){
+  D=js; T=D.nowIdx; slider.value=T; lastHour=-1; buildTimeline(); buildMatrix();
+  const n=D.times.length-1;
+  document.getElementById('sub').innerHTML=`${D.dateLabel.replace(' · PKT','')} · ${D.times[0]}–${D.times[n]} PKT · observed airport winds (METAR) for the past 6 hours, then official forecasts (TAF) for the next 6 hours; gaps filled from the Open-Meteo model. Particles move <i>with</i> the wind; arrows point where the air is going.`;
+  setPlaying(false); setTimeout(()=>{T=0;slider.value=0;setPlaying(true);},600);
+}
+let liveAt=null;
+async function loadLatest(manual){
+  const st=document.getElementById('status');
+  try{
+    const r=await fetch('data/latest.json?ts='+Date.now(),{cache:'no-store'});
+    if(!r.ok) throw new Error('HTTP '+r.status);
+    const js=await r.json();
+    if(!js.sites||!js.times) throw new Error('bad file');
+    const changed = !liveAt || js.generated!==liveAt;
+    liveAt=js.generated;
+    if(changed||manual) applyData(js);
+    const age=Math.round((Date.now()-Date.parse(js.generated))/60000);
+    const fresh=age<=75;
+    const m=js.stats||{};
+    st.innerHTML=`<span class="${fresh?'live-dot':'stale-dot'}"></span>${fresh?'Live':'Last update'}: ${js.generatedPKT} (${age<1?'just now':age+' min ago'}) · ${m.metar??'?'} airport reports, ${m.taf??'?'} forecasts. Auto-refreshes every 30 min.`;
+    return true;
+  }catch(e){
+    if(manual){ await loadOpenMeteoDirect(); return false; }
+    st.textContent='Live file not reachable here — showing the 11 Nov 10:30 PKT snapshot. On the hosted site this updates automatically.';
+    return false;
+  }
+}
+document.getElementById('live').addEventListener('click',()=>loadLatest(true));
+setInterval(()=>loadLatest(false), 5*60*1000);
+
+function autoReading(h){
+  const ap=D.sites.filter(s=>s.major), rows=ap.map(s=>({s,o:s.s[h]})).filter(r=>r.o);
+  const obs=rows.filter(r=>r.o.src==='METAR');
+  const pool = obs.length? obs : rows;
+  if(!pool.length) return 'No airport values for this hour.';
+  const calm=pool.filter(r=>r.o.calm||(r.o.spd<2)).map(r=>r.s.short);
+  const moving=pool.filter(r=>!r.o.calm&&!r.o.vrb&&r.o.spd>=2);
+  let su=0,sv=0; for(const r of moving){const q=uv(r.o);su+=q[0];sv+=q[1];}
+  const top=moving.slice().sort((a,b)=>b.o.spd-a.o.spd)[0];
+  const kind = h<=D.nowIdx ? (obs.length?'Observed':'Model') : 'Forecast';
+  let txt=`<b>${kind} at ${D.times[h]}:</b> `;
+  if(calm.length) txt+=`calm or near-calm at ${calm.join(', ')}. `;
+  if(moving.length){
+    const fromDir = (Math.atan2(-su,-sv)*180/Math.PI+360)%360; // direction air comes FROM
+    txt+=`Across the moving sites the net flow is from the <b>${compass(fromDir)}</b>`;
+    if(top) txt+=`; strongest at ${top.s.short}, ${compass(top.o.dir)} ${top.o.spd.toFixed(0)} km/h${top.o.gust?` gusting ${top.o.gust.toFixed(0)}`:''}.`;
+  }
+  const vis=obs.map(r=>r.o.note&&r.o.note.match(/vis (\d+) m/)).filter(Boolean).map((m,i)=>+m[1]);
+  const low=obs.filter(r=>{const m=r.o.note&&r.o.note.match(/vis (\d+) m/);return m&&+m[1]<=1000;}).map(r=>r.s.short);
+  if(low.length) txt+=` Visibility at or below 1 km at ${low.join(', ')} (fog/smog).`;
+  if(calm.length>=Math.ceil(pool.length/2)) txt+=' Most sites are stagnant, so pollutants accumulate near their sources.';
+  return txt;
+}
+
+buildTimeline(); buildMatrix(); resize(); requestAnimationFrame(loop);
+loadLatest(false).then(ok=>{ if(!ok) setTimeout(()=>{ if(!playing && T===SNAP.nowIdx){T=0;slider.value=0;setPlaying(true);} },900); });
+</script>
+</body>
+</html>
