@@ -1,6 +1,6 @@
 rank,district,division,source,11:00–12:00 speed km/h,12:00–13:00 speed km/h,13:00–14:00 speed km/h,14:00–15:00 speed km/h,15:00–16:00 speed km/h,16:00–17:00 speed km/h,11:00–12:00 dir,12:00–13:00 dir,13:00–14:00 dir,14:00–15:00 dir,15:00–16:00 dir,16:00–17:00 dir,6h mean speed km/h,6h net direction (deg),6h net direction,resultant speed km/h,steadiness,calm hours (<2 km/h)
 1,Multan,Multan,METAR,0.0,0.0,3.7,0.0,0.0,0.0,calm,calm,NW 310°,calm,calm,calm,0.62,310,NW,0.62,1.0,5
-2,Khushab,Sargodha,MODEL,4.5,1.7,1.0,0.8,0.7,2.1,W 266°,WNW 286°,S 180°,calm 194°,calm 56°,NE 53°,1.8,270,W,0.68,0.38,4
+2,Khushab,Sargodha,MODEL,4.5,1.7,1.0,0.8,0.7,2.1,W 266°,WNW 286°,S 180°,calm,calm,NE 53°,1.8,270,W,0.68,0.38,4
 3,Faisalabad,Faisalabad,METAR,3.7,0.0,0.0,0.0,0.0,7.4,S 180°,calm,calm,calm,calm,N 0°,1.85,0,N,0.62,0.33,4
 4,Muzaffargarh,D.G. Khan,MODEL,4.0,2.7,1.8,1.4,1.1,1.7,N 9°,N 358°,NNW 342°,NNW 329°,WNW 287°,NW 318°,2.12,345,NNW,1.92,0.91,4
 5,Chiniot,Faisalabad,MODEL,2.0,2.8,2.7,2.7,2.6,2.5,NW 308°,NNW 326°,NW 325°,NNW 338°,N 6°,NE 44°,2.55,344,NNW,2.2,0.86,0

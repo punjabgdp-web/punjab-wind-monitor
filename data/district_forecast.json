@@ -1,0 +1,2488 @@
+{
+ "generated": "2026-11-11T12:54:29+00:00",
+ "generatedPKT": "11 Nov 2026, 17:54 PKT",
+ "window": "11 Nov 18:00 \u2013 12 Nov 18:00 PKT",
+ "block_start_dates": [
+  "11 Nov",
+  "11 Nov",
+  "12 Nov",
+  "12 Nov",
+  "12 Nov",
+  "12 Nov",
+  "12 Nov",
+  "12 Nov"
+ ],
+ "blocks": [
+  "18:00\u201321:00",
+  "21:00\u201300:00",
+  "00:00\u201303:00",
+  "03:00\u201306:00",
+  "06:00\u201309:00",
+  "09:00\u201312:00",
+  "12:00\u201315:00",
+  "15:00\u201318:00"
+ ],
+ "districts": [
+  {
+   "district": "Khushab",
+   "division": "Sargodha",
+   "airport": null,
+   "blocks": [
+    {
+     "spd": 1.3,
+     "dir": 59,
+     "cmp": "ENE"
+    },
+    {
+     "spd": 1.5,
+     "dir": 35,
+     "cmp": "NE"
+    },
+    {
+     "spd": 0.7,
+     "dir": 96,
+     "cmp": "calm"
+    },
+    {
+     "spd": 0.5,
+     "dir": 128,
+     "cmp": "calm"
+    },
+    {
+     "spd": 1.3,
+     "dir": 107,
+     "cmp": "ESE"
+    },
+    {
+     "spd": 4.5,
+     "dir": 74,
+     "cmp": "ENE"
+    },
+    {
+     "spd": 5.3,
+     "dir": 92,
+     "cmp": "E"
+    },
+    {
+     "spd": 7.2,
+     "dir": 33,
+     "cmp": "NNE"
+    }
+   ],
+   "mean_spd": 2.78,
+   "net_dir": 64,
+   "net_cmp": "ENE",
+   "resultant_spd": 2.36,
+   "steadiness": 0.85,
+   "hours_lt2": 12,
+   "peak": {
+    "spd": 9.8,
+    "cmp": "NE",
+    "time": "Thu 17:00"
+   },
+   "rank": 1
+  },
+  {
+   "district": "Mandi Bahauddin",
+   "division": "Gujrat",
+   "airport": null,
+   "blocks": [
+    {
+     "spd": 2.3,
+     "dir": 318,
+     "cmp": "NW"
+    },
+    {
+     "spd": 1.2,
+     "dir": 317,
+     "cmp": "NW"
+    },
+    {
+     "spd": 0.5,
+     "dir": 72,
+     "cmp": "calm"
+    },
+    {
+     "spd": 3.1,
+     "dir": 53,
+     "cmp": "NE"
+    },
+    {
+     "spd": 3.6,
+     "dir": 38,
+     "cmp": "NE"
+    },
+    {
+     "spd": 0.7,
+     "dir": 242,
+     "cmp": "calm"
+    },
+    {
+     "spd": 5.4,
+     "dir": 75,
+     "cmp": "ENE"
+    },
+    {
+     "spd": 5.9,
+     "dir": 74,
+     "cmp": "ENE"
+    }
+   ],
+   "mean_spd": 2.85,
+   "net_dir": 52,
+   "net_cmp": "NE",
+   "resultant_spd": 1.95,
+   "steadiness": 0.68,
+   "hours_lt2": 10,
+   "peak": {
+    "spd": 7.3,
+    "cmp": "E",
+    "time": "Thu 14:00"
+   },
+   "rank": 2
+  },
+  {
+   "district": "Lahore",
+   "division": "Lahore",
+   "airport": "OPLA",
+   "blocks": [
+    {
+     "spd": 4.5,
+     "dir": 313,
+     "cmp": "NW"
+    },
+    {
+     "spd": 4.0,
+     "dir": 346,
+     "cmp": "NNW"
+    },
+    {
+     "spd": 3.9,
+     "dir": 26,
+     "cmp": "NNE"
+    },
+    {
+     "spd": 3.6,
+     "dir": 23,
+     "cmp": "NNE"
+    },
+    {
+     "spd": 3.7,
+     "dir": 37,
+     "cmp": "NE"
+    },
+    {
+     "spd": 1.8,
+     "dir": 120,
+     "cmp": "ESE"
+    },
+    {
+     "spd": 1.7,
+     "dir": 184,
+     "cmp": "S"
+    },
+    {
+     "spd": 3.4,
+     "dir": 126,
+     "cmp": "SE"
+    }
+   ],
+   "mean_spd": 3.32,
+   "net_dir": 23,
+   "net_cmp": "NNE",
+   "resultant_spd": 1.64,
+   "steadiness": 0.49,
+   "hours_lt2": 5,
+   "peak": {
+    "spd": 5.0,
+    "cmp": "NW",
+    "time": "Wed 19:00"
+   },
+   "taf": {
+    "icao": "OPLA",
+    "hours": 24,
+    "mean_spd": 10.8,
+    "net_cmp": "NE",
+    "net_dir": 37
+   },
+   "rank": 3
+  },
+  {
+   "district": "Chakwal",
+   "division": "Rawalpindi",
+   "airport": null,
+   "blocks": [
+    {
+     "spd": 2.4,
+     "dir": 228,
+     "cmp": "SW"
+    },
+    {
+     "spd": 2.7,
+     "dir": 218,
+     "cmp": "SW"
+    },
+    {
+     "spd": 1.4,
+     "dir": 236,
+     "cmp": "SW"
+    },
+    {
+     "spd": 3.2,
+     "dir": 228,
+     "cmp": "SW"
+    },
+    {
+     "spd": 1.8,
+     "dir": 257,
+     "cmp": "WSW"
+    },
+    {
+     "spd": 1.7,
+     "dir": 302,
+     "cmp": "WNW"
+    },
+    {
+     "spd": 6.1,
+     "dir": 27,
+     "cmp": "NNE"
+    },
+    {
+     "spd": 12.1,
+     "dir": 336,
+     "cmp": "NNW"
+    }
+   ],
+   "mean_spd": 3.94,
+   "net_dir": 310,
+   "net_cmp": "NW",
+   "resultant_spd": 1.86,
+   "steadiness": 0.47,
+   "hours_lt2": 8,
+   "peak": {
+    "spd": 15.9,
+    "cmp": "NNW",
+    "time": "Thu 16:00"
+   },
+   "rank": 4
+  },
+  {
+   "district": "Kasur",
+   "division": "Lahore",
+   "airport": null,
+   "blocks": [
+    {
+     "spd": 5.5,
+     "dir": 288,
+     "cmp": "WNW"
+    },
+    {
+     "spd": 4.0,
+     "dir": 314,
+     "cmp": "NW"
+    },
+    {
+     "spd": 4.8,
+     "dir": 26,
+     "cmp": "NNE"
+    },
+    {
+     "spd": 3.9,
+     "dir": 50,
+     "cmp": "NE"
+    },
+    {
+     "spd": 3.3,
+     "dir": 101,
+     "cmp": "E"
+    },
+    {
+     "spd": 3.2,
+     "dir": 124,
+     "cmp": "SE"
+    },
+    {
+     "spd": 3.0,
+     "dir": 147,
+     "cmp": "SSE"
+    },
+    {
+     "spd": 4.3,
+     "dir": 93,
+     "cmp": "E"
+    }
+   ],
+   "mean_spd": 4.0,
+   "net_dir": 54,
+   "net_cmp": "NE",
+   "resultant_spd": 1.28,
+   "steadiness": 0.32,
+   "hours_lt2": 0,
+   "peak": {
+    "spd": 5.7,
+    "cmp": "W",
+    "time": "Wed 18:00"
+   },
+   "rank": 5
+  },
+  {
+   "district": "Sargodha",
+   "division": "Sargodha",
+   "airport": null,
+   "blocks": [
+    {
+     "spd": 3.0,
+     "dir": 109,
+     "cmp": "ESE"
+    },
+    {
+     "spd": 3.0,
+     "dir": 106,
+     "cmp": "ESE"
+    },
+    {
+     "spd": 1.8,
+     "dir": 58,
+     "cmp": "ENE"
+    },
+    {
+     "spd": 2.4,
+     "dir": 54,
+     "cmp": "NE"
+    },
+    {
+     "spd": 3.5,
+     "dir": 101,
+     "cmp": "ESE"
+    },
+    {
+     "spd": 4.2,
+     "dir": 71,
+     "cmp": "ENE"
+    },
+    {
+     "spd": 6.6,
+     "dir": 115,
+     "cmp": "ESE"
+    },
+    {
+     "spd": 7.8,
+     "dir": 53,
+     "cmp": "NE"
+    }
+   ],
+   "mean_spd": 4.05,
+   "net_dir": 85,
+   "net_cmp": "E",
+   "resultant_spd": 3.39,
+   "steadiness": 0.84,
+   "hours_lt2": 4,
+   "peak": {
+    "spd": 11.9,
+    "cmp": "NNE",
+    "time": "Thu 17:00"
+   },
+   "rank": 6
+  },
+  {
+   "district": "Gujranwala",
+   "division": "Gujranwala",
+   "airport": null,
+   "blocks": [
+    {
+     "spd": 5.9,
+     "dir": 289,
+     "cmp": "WNW"
+    },
+    {
+     "spd": 5.1,
+     "dir": 306,
+     "cmp": "NW"
+    },
+    {
+     "spd": 5.3,
+     "dir": 328,
+     "cmp": "NNW"
+    },
+    {
+     "spd": 5.2,
+     "dir": 353,
+     "cmp": "N"
+    },
+    {
+     "spd": 2.9,
+     "dir": 13,
+     "cmp": "NNE"
+    },
+    {
+     "spd": 0.4,
+     "dir": 0,
+     "cmp": "calm"
+    },
+    {
+     "spd": 3.1,
+     "dir": 29,
+     "cmp": "NNE"
+    },
+    {
+     "spd": 6.1,
+     "dir": 80,
+     "cmp": "E"
+    }
+   ],
+   "mean_spd": 4.26,
+   "net_dir": 346,
+   "net_cmp": "NNW",
+   "resultant_spd": 2.64,
+   "steadiness": 0.62,
+   "hours_lt2": 3,
+   "peak": {
+    "spd": 7.8,
+    "cmp": "ENE",
+    "time": "Thu 17:00"
+   },
+   "rank": 7
+  },
+  {
+   "district": "Rawalpindi",
+   "division": "Rawalpindi",
+   "airport": null,
+   "blocks": [
+    {
+     "spd": 6.2,
+     "dir": 291,
+     "cmp": "WNW"
+    },
+    {
+     "spd": 3.2,
+     "dir": 303,
+     "cmp": "WNW"
+    },
+    {
+     "spd": 3.0,
+     "dir": 348,
+     "cmp": "NNW"
+    },
+    {
+     "spd": 4.2,
+     "dir": 338,
+     "cmp": "NNW"
+    },
+    {
+     "spd": 3.3,
+     "dir": 274,
+     "cmp": "W"
+    },
+    {
+     "spd": 2.3,
+     "dir": 343,
+     "cmp": "NNW"
+    },
+    {
+     "spd": 5.0,
+     "dir": 79,
+     "cmp": "E"
+    },
+    {
+     "spd": 7.2,
+     "dir": 30,
+     "cmp": "NNE"
+    }
+   ],
+   "mean_spd": 4.28,
+   "net_dir": 338,
+   "net_cmp": "NNW",
+   "resultant_spd": 2.25,
+   "steadiness": 0.52,
+   "hours_lt2": 3,
+   "peak": {
+    "spd": 11.9,
+    "cmp": "ENE",
+    "time": "Thu 16:00"
+   },
+   "rank": 8
+  },
+  {
+   "district": "Nankana Sahib",
+   "division": "Lahore",
+   "airport": null,
+   "blocks": [
+    {
+     "spd": 1.1,
+     "dir": 319,
+     "cmp": "NW"
+    },
+    {
+     "spd": 3.5,
+     "dir": 12,
+     "cmp": "NNE"
+    },
+    {
+     "spd": 4.1,
+     "dir": 38,
+     "cmp": "NE"
+    },
+    {
+     "spd": 5.1,
+     "dir": 63,
+     "cmp": "ENE"
+    },
+    {
+     "spd": 4.1,
+     "dir": 73,
+     "cmp": "ENE"
+    },
+    {
+     "spd": 4.5,
+     "dir": 120,
+     "cmp": "ESE"
+    },
+    {
+     "spd": 6.3,
+     "dir": 167,
+     "cmp": "SSE"
+    },
+    {
+     "spd": 6.2,
+     "dir": 147,
+     "cmp": "SSE"
+    }
+   ],
+   "mean_spd": 4.35,
+   "net_dir": 98,
+   "net_cmp": "E",
+   "resultant_spd": 2.42,
+   "steadiness": 0.56,
+   "hours_lt2": 3,
+   "peak": {
+    "spd": 6.7,
+    "cmp": "SSE",
+    "time": "Thu 16:00"
+   },
+   "rank": 9
+  },
+  {
+   "district": "Sheikhupura",
+   "division": "Lahore",
+   "airport": null,
+   "blocks": [
+    {
+     "spd": 5.1,
+     "dir": 346,
+     "cmp": "NNW"
+    },
+    {
+     "spd": 4.1,
+     "dir": 350,
+     "cmp": "N"
+    },
+    {
+     "spd": 5.6,
+     "dir": 357,
+     "cmp": "N"
+    },
+    {
+     "spd": 4.4,
+     "dir": 45,
+     "cmp": "NE"
+    },
+    {
+     "spd": 4.3,
+     "dir": 36,
+     "cmp": "NE"
+    },
+    {
+     "spd": 3.1,
+     "dir": 120,
+     "cmp": "ESE"
+    },
+    {
+     "spd": 3.7,
+     "dir": 162,
+     "cmp": "SSE"
+    },
+    {
+     "spd": 5.7,
+     "dir": 136,
+     "cmp": "SE"
+    }
+   ],
+   "mean_spd": 4.5,
+   "net_dir": 43,
+   "net_cmp": "NE",
+   "resultant_spd": 2.0,
+   "steadiness": 0.45,
+   "hours_lt2": 0,
+   "peak": {
+    "spd": 6.7,
+    "cmp": "N",
+    "time": "Thu 02:00"
+   },
+   "rank": 10
+  },
+  {
+   "district": "Attock",
+   "division": "Rawalpindi",
+   "airport": "OPIS",
+   "blocks": [
+    {
+     "spd": 2.4,
+     "dir": 294,
+     "cmp": "WNW"
+    },
+    {
+     "spd": 1.5,
+     "dir": 159,
+     "cmp": "SSE"
+    },
+    {
+     "spd": 1.5,
+     "dir": 185,
+     "cmp": "S"
+    },
+    {
+     "spd": 2.1,
+     "dir": 13,
+     "cmp": "NNE"
+    },
+    {
+     "spd": 3.9,
+     "dir": 338,
+     "cmp": "NNW"
+    },
+    {
+     "spd": 5.6,
+     "dir": 5,
+     "cmp": "N"
+    },
+    {
+     "spd": 13.8,
+     "dir": 336,
+     "cmp": "NNW"
+    },
+    {
+     "spd": 5.5,
+     "dir": 11,
+     "cmp": "N"
+    }
+   ],
+   "mean_spd": 4.54,
+   "net_dir": 345,
+   "net_cmp": "NNW",
+   "resultant_spd": 3.26,
+   "steadiness": 0.72,
+   "hours_lt2": 7,
+   "peak": {
+    "spd": 14.2,
+    "cmp": "NNW",
+    "time": "Thu 13:00"
+   },
+   "taf": {
+    "icao": "OPIS",
+    "hours": 24,
+    "mean_spd": 18.5,
+    "net_cmp": "NW",
+    "net_dir": 310
+   },
+   "rank": 11
+  },
+  {
+   "district": "Narowal",
+   "division": "Gujranwala",
+   "airport": null,
+   "blocks": [
+    {
+     "spd": 6.2,
+     "dir": 313,
+     "cmp": "NW"
+    },
+    {
+     "spd": 6.0,
+     "dir": 341,
+     "cmp": "NNW"
+    },
+    {
+     "spd": 4.6,
+     "dir": 342,
+     "cmp": "NNW"
+    },
+    {
+     "spd": 4.6,
+     "dir": 10,
+     "cmp": "N"
+    },
+    {
+     "spd": 3.4,
+     "dir": 83,
+     "cmp": "E"
+    },
+    {
+     "spd": 1.6,
+     "dir": 87,
+     "cmp": "E"
+    },
+    {
+     "spd": 4.3,
+     "dir": 359,
+     "cmp": "N"
+    },
+    {
+     "spd": 6.4,
+     "dir": 52,
+     "cmp": "NE"
+    }
+   ],
+   "mean_spd": 4.63,
+   "net_dir": 5,
+   "net_cmp": "N",
+   "resultant_spd": 3.33,
+   "steadiness": 0.72,
+   "hours_lt2": 2,
+   "peak": {
+    "spd": 7.1,
+    "cmp": "NNE",
+    "time": "Thu 15:00"
+   },
+   "rank": 12
+  },
+  {
+   "district": "Wazirabad",
+   "division": "Gujranwala",
+   "airport": null,
+   "blocks": [
+    {
+     "spd": 6.1,
+     "dir": 272,
+     "cmp": "W"
+    },
+    {
+     "spd": 5.1,
+     "dir": 316,
+     "cmp": "NW"
+    },
+    {
+     "spd": 4.6,
+     "dir": 308,
+     "cmp": "NW"
+    },
+    {
+     "spd": 4.0,
+     "dir": 354,
+     "cmp": "N"
+    },
+    {
+     "spd": 2.1,
+     "dir": 358,
+     "cmp": "N"
+    },
+    {
+     "spd": 1.7,
+     "dir": 12,
+     "cmp": "NNE"
+    },
+    {
+     "spd": 4.9,
+     "dir": 36,
+     "cmp": "NE"
+    },
+    {
+     "spd": 9.0,
+     "dir": 83,
+     "cmp": "E"
+    }
+   ],
+   "mean_spd": 4.7,
+   "net_dir": 355,
+   "net_cmp": "N",
+   "resultant_spd": 2.37,
+   "steadiness": 0.5,
+   "hours_lt2": 4,
+   "peak": {
+    "spd": 10.1,
+    "cmp": "E",
+    "time": "Thu 16:00"
+   },
+   "rank": 13
+  },
+  {
+   "district": "Hafizabad",
+   "division": "Gujranwala",
+   "airport": null,
+   "blocks": [
+    {
+     "spd": 2.1,
+     "dir": 317,
+     "cmp": "NW"
+    },
+    {
+     "spd": 2.4,
+     "dir": 314,
+     "cmp": "NW"
+    },
+    {
+     "spd": 6.3,
+     "dir": 15,
+     "cmp": "NNE"
+    },
+    {
+     "spd": 6.5,
+     "dir": 27,
+     "cmp": "NNE"
+    },
+    {
+     "spd": 5.5,
+     "dir": 49,
+     "cmp": "NE"
+    },
+    {
+     "spd": 3.4,
+     "dir": 50,
+     "cmp": "NE"
+    },
+    {
+     "spd": 4.1,
+     "dir": 82,
+     "cmp": "E"
+    },
+    {
+     "spd": 7.5,
+     "dir": 78,
+     "cmp": "ENE"
+    }
+   ],
+   "mean_spd": 4.73,
+   "net_dir": 41,
+   "net_cmp": "NE",
+   "resultant_spd": 3.71,
+   "steadiness": 0.79,
+   "hours_lt2": 3,
+   "peak": {
+    "spd": 9.7,
+    "cmp": "ENE",
+    "time": "Thu 17:00"
+   },
+   "rank": 14
+  },
+  {
+   "district": "Talagang",
+   "division": "Rawalpindi",
+   "airport": null,
+   "blocks": [
+    {
+     "spd": 1.6,
+     "dir": 5,
+     "cmp": "N"
+    },
+    {
+     "spd": 3.2,
+     "dir": 202,
+     "cmp": "SSW"
+    },
+    {
+     "spd": 2.5,
+     "dir": 191,
+     "cmp": "S"
+    },
+    {
+     "spd": 1.9,
+     "dir": 189,
+     "cmp": "S"
+    },
+    {
+     "spd": 1.3,
+     "dir": 27,
+     "cmp": "NNE"
+    },
+    {
+     "spd": 4.5,
+     "dir": 32,
+     "cmp": "NNE"
+    },
+    {
+     "spd": 8.4,
+     "dir": 10,
+     "cmp": "N"
+    },
+    {
+     "spd": 15.3,
+     "dir": 358,
+     "cmp": "N"
+    }
+   ],
+   "mean_spd": 4.85,
+   "net_dir": 5,
+   "net_cmp": "N",
+   "resultant_spd": 2.61,
+   "steadiness": 0.54,
+   "hours_lt2": 7,
+   "peak": {
+    "spd": 19.8,
+    "cmp": "NNW",
+    "time": "Thu 15:00"
+   },
+   "rank": 15
+  },
+  {
+   "district": "Khanewal",
+   "division": "Multan",
+   "airport": null,
+   "blocks": [
+    {
+     "spd": 1.2,
+     "dir": 83,
+     "cmp": "E"
+    },
+    {
+     "spd": 5.0,
+     "dir": 20,
+     "cmp": "NNE"
+    },
+    {
+     "spd": 6.8,
+     "dir": 64,
+     "cmp": "ENE"
+    },
+    {
+     "spd": 3.9,
+     "dir": 91,
+     "cmp": "E"
+    },
+    {
+     "spd": 2.3,
+     "dir": 182,
+     "cmp": "S"
+    },
+    {
+     "spd": 3.0,
+     "dir": 181,
+     "cmp": "S"
+    },
+    {
+     "spd": 7.7,
+     "dir": 199,
+     "cmp": "SSW"
+    },
+    {
+     "spd": 9.6,
+     "dir": 203,
+     "cmp": "SSW"
+    }
+   ],
+   "mean_spd": 4.94,
+   "net_dir": 158,
+   "net_cmp": "SSE",
+   "resultant_spd": 1.85,
+   "steadiness": 0.37,
+   "hours_lt2": 4,
+   "peak": {
+    "spd": 10.6,
+    "cmp": "SSW",
+    "time": "Thu 15:00"
+   },
+   "rank": 16
+  },
+  {
+   "district": "Bahawalpur",
+   "division": "Bahawalpur",
+   "airport": "OPBW",
+   "blocks": [
+    {
+     "spd": 4.2,
+     "dir": 228,
+     "cmp": "SW"
+    },
+    {
+     "spd": 2.1,
+     "dir": 288,
+     "cmp": "WNW"
+    },
+    {
+     "spd": 2.4,
+     "dir": 17,
+     "cmp": "NNE"
+    },
+    {
+     "spd": 2.2,
+     "dir": 60,
+     "cmp": "ENE"
+    },
+    {
+     "spd": 3.4,
+     "dir": 327,
+     "cmp": "NNW"
+    },
+    {
+     "spd": 2.8,
+     "dir": 191,
+     "cmp": "S"
+    },
+    {
+     "spd": 11.8,
+     "dir": 219,
+     "cmp": "SW"
+    },
+    {
+     "spd": 11.2,
+     "dir": 219,
+     "cmp": "SW"
+    }
+   ],
+   "mean_spd": 5.0,
+   "net_dir": 229,
+   "net_cmp": "SW",
+   "resultant_spd": 3.19,
+   "steadiness": 0.64,
+   "hours_lt2": 5,
+   "peak": {
+    "spd": 14.5,
+    "cmp": "SW",
+    "time": "Thu 15:00"
+   },
+   "rank": 17
+  },
+  {
+   "district": "Gujrat",
+   "division": "Gujrat",
+   "airport": null,
+   "blocks": [
+    {
+     "spd": 5.6,
+     "dir": 307,
+     "cmp": "NW"
+    },
+    {
+     "spd": 5.9,
+     "dir": 340,
+     "cmp": "NNW"
+    },
+    {
+     "spd": 5.2,
+     "dir": 331,
+     "cmp": "NNW"
+    },
+    {
+     "spd": 5.0,
+     "dir": 6,
+     "cmp": "N"
+    },
+    {
+     "spd": 2.0,
+     "dir": 38,
+     "cmp": "NE"
+    },
+    {
+     "spd": 2.2,
+     "dir": 19,
+     "cmp": "NNE"
+    },
+    {
+     "spd": 6.1,
+     "dir": 44,
+     "cmp": "NE"
+    },
+    {
+     "spd": 8.8,
+     "dir": 77,
+     "cmp": "ENE"
+    }
+   ],
+   "mean_spd": 5.09,
+   "net_dir": 12,
+   "net_cmp": "NNE",
+   "resultant_spd": 3.59,
+   "steadiness": 0.71,
+   "hours_lt2": 2,
+   "peak": {
+    "spd": 10.4,
+    "cmp": "E",
+    "time": "Thu 15:00"
+   },
+   "rank": 18
+  },
+  {
+   "district": "Bhakkar",
+   "division": "Sargodha",
+   "airport": null,
+   "blocks": [
+    {
+     "spd": 4.4,
+     "dir": 30,
+     "cmp": "NNE"
+    },
+    {
+     "spd": 6.0,
+     "dir": 30,
+     "cmp": "NNE"
+    },
+    {
+     "spd": 4.8,
+     "dir": 334,
+     "cmp": "NNW"
+    },
+    {
+     "spd": 4.5,
+     "dir": 338,
+     "cmp": "NNW"
+    },
+    {
+     "spd": 3.7,
+     "dir": 355,
+     "cmp": "N"
+    },
+    {
+     "spd": 3.0,
+     "dir": 9,
+     "cmp": "N"
+    },
+    {
+     "spd": 4.3,
+     "dir": 10,
+     "cmp": "N"
+    },
+    {
+     "spd": 10.3,
+     "dir": 334,
+     "cmp": "NNW"
+    }
+   ],
+   "mean_spd": 5.11,
+   "net_dir": 356,
+   "net_cmp": "N",
+   "resultant_spd": 4.63,
+   "steadiness": 0.91,
+   "hours_lt2": 0,
+   "peak": {
+    "spd": 11.6,
+    "cmp": "NNW",
+    "time": "Thu 16:00"
+   },
+   "rank": 19
+  },
+  {
+   "district": "Lodhran",
+   "division": "Multan",
+   "airport": null,
+   "blocks": [
+    {
+     "spd": 2.4,
+     "dir": 240,
+     "cmp": "WSW"
+    },
+    {
+     "spd": 1.1,
+     "dir": 18,
+     "cmp": "NNE"
+    },
+    {
+     "spd": 5.4,
+     "dir": 13,
+     "cmp": "NNE"
+    },
+    {
+     "spd": 3.2,
+     "dir": 10,
+     "cmp": "N"
+    },
+    {
+     "spd": 4.6,
+     "dir": 330,
+     "cmp": "NNW"
+    },
+    {
+     "spd": 2.4,
+     "dir": 200,
+     "cmp": "SSW"
+    },
+    {
+     "spd": 11.4,
+     "dir": 221,
+     "cmp": "SW"
+    },
+    {
+     "spd": 12.5,
+     "dir": 213,
+     "cmp": "SSW"
+    }
+   ],
+   "mean_spd": 5.37,
+   "net_dir": 243,
+   "net_cmp": "WSW",
+   "resultant_spd": 2.33,
+   "steadiness": 0.43,
+   "hours_lt2": 7,
+   "peak": {
+    "spd": 15.3,
+    "cmp": "SW",
+    "time": "Thu 15:00"
+   },
+   "rank": 20
+  },
+  {
+   "district": "Mianwali",
+   "division": "Sargodha",
+   "airport": null,
+   "blocks": [
+    {
+     "spd": 2.0,
+     "dir": 351,
+     "cmp": "N"
+    },
+    {
+     "spd": 4.1,
+     "dir": 5,
+     "cmp": "N"
+    },
+    {
+     "spd": 4.7,
+     "dir": 338,
+     "cmp": "NNW"
+    },
+    {
+     "spd": 3.9,
+     "dir": 339,
+     "cmp": "NNW"
+    },
+    {
+     "spd": 3.3,
+     "dir": 343,
+     "cmp": "NNW"
+    },
+    {
+     "spd": 3.9,
+     "dir": 346,
+     "cmp": "NNW"
+    },
+    {
+     "spd": 5.0,
+     "dir": 341,
+     "cmp": "NNW"
+    },
+    {
+     "spd": 16.4,
+     "dir": 31,
+     "cmp": "NNE"
+    }
+   ],
+   "mean_spd": 5.41,
+   "net_dir": 3,
+   "net_cmp": "N",
+   "resultant_spd": 4.85,
+   "steadiness": 0.9,
+   "hours_lt2": 1,
+   "peak": {
+    "spd": 19.6,
+    "cmp": "NE",
+    "time": "Thu 17:00"
+   },
+   "rank": 21
+  },
+  {
+   "district": "Chiniot",
+   "division": "Faisalabad",
+   "airport": null,
+   "blocks": [
+    {
+     "spd": 6.0,
+     "dir": 82,
+     "cmp": "E"
+    },
+    {
+     "spd": 4.4,
+     "dir": 72,
+     "cmp": "ENE"
+    },
+    {
+     "spd": 4.0,
+     "dir": 59,
+     "cmp": "ENE"
+    },
+    {
+     "spd": 4.1,
+     "dir": 59,
+     "cmp": "ENE"
+    },
+    {
+     "spd": 5.2,
+     "dir": 92,
+     "cmp": "E"
+    },
+    {
+     "spd": 6.3,
+     "dir": 117,
+     "cmp": "ESE"
+    },
+    {
+     "spd": 7.7,
+     "dir": 151,
+     "cmp": "SSE"
+    },
+    {
+     "spd": 5.5,
+     "dir": 158,
+     "cmp": "SSE"
+    }
+   ],
+   "mean_spd": 5.42,
+   "net_dir": 104,
+   "net_cmp": "ESE",
+   "resultant_spd": 4.3,
+   "steadiness": 0.79,
+   "hours_lt2": 0,
+   "peak": {
+    "spd": 8.0,
+    "cmp": "SSE",
+    "time": "Thu 14:00"
+   },
+   "rank": 22
+  },
+  {
+   "district": "Faisalabad",
+   "division": "Faisalabad",
+   "airport": "OPFA",
+   "blocks": [
+    {
+     "spd": 5.4,
+     "dir": 53,
+     "cmp": "NE"
+    },
+    {
+     "spd": 5.4,
+     "dir": 63,
+     "cmp": "ENE"
+    },
+    {
+     "spd": 5.4,
+     "dir": 59,
+     "cmp": "ENE"
+    },
+    {
+     "spd": 5.2,
+     "dir": 80,
+     "cmp": "E"
+    },
+    {
+     "spd": 5.6,
+     "dir": 87,
+     "cmp": "E"
+    },
+    {
+     "spd": 5.9,
+     "dir": 127,
+     "cmp": "SE"
+    },
+    {
+     "spd": 5.8,
+     "dir": 173,
+     "cmp": "S"
+    },
+    {
+     "spd": 4.9,
+     "dir": 146,
+     "cmp": "SSE"
+    }
+   ],
+   "mean_spd": 5.45,
+   "net_dir": 96,
+   "net_cmp": "E",
+   "resultant_spd": 4.02,
+   "steadiness": 0.74,
+   "hours_lt2": 0,
+   "peak": {
+    "spd": 6.5,
+    "cmp": "SE",
+    "time": "Thu 11:00"
+   },
+   "taf": {
+    "icao": "OPFA",
+    "hours": 24,
+    "mean_spd": 7.4,
+    "net_cmp": "NE",
+    "net_dir": 55
+   },
+   "rank": 23
+  },
+  {
+   "district": "Sialkot",
+   "division": "Gujranwala",
+   "airport": "OPST",
+   "blocks": [
+    {
+     "spd": 8.2,
+     "dir": 282,
+     "cmp": "WNW"
+    },
+    {
+     "spd": 6.6,
+     "dir": 307,
+     "cmp": "NW"
+    },
+    {
+     "spd": 5.4,
+     "dir": 339,
+     "cmp": "NNW"
+    },
+    {
+     "spd": 7.0,
+     "dir": 26,
+     "cmp": "NNE"
+    },
+    {
+     "spd": 2.4,
+     "dir": 61,
+     "cmp": "ENE"
+    },
+    {
+     "spd": 2.0,
+     "dir": 44,
+     "cmp": "NE"
+    },
+    {
+     "spd": 6.6,
+     "dir": 38,
+     "cmp": "NE"
+    },
+    {
+     "spd": 5.9,
+     "dir": 59,
+     "cmp": "ENE"
+    }
+   ],
+   "mean_spd": 5.51,
+   "net_dir": 359,
+   "net_cmp": "N",
+   "resultant_spd": 3.35,
+   "steadiness": 0.61,
+   "hours_lt2": 2,
+   "peak": {
+    "spd": 8.6,
+    "cmp": "W",
+    "time": "Wed 19:00"
+   },
+   "taf": {
+    "icao": "OPST",
+    "hours": 24,
+    "mean_spd": 11.1,
+    "net_cmp": "NW",
+    "net_dir": 310
+   },
+   "rank": 24
+  },
+  {
+   "district": "Toba Tek Singh",
+   "division": "Faisalabad",
+   "airport": null,
+   "blocks": [
+    {
+     "spd": 9.1,
+     "dir": 76,
+     "cmp": "ENE"
+    },
+    {
+     "spd": 8.0,
+     "dir": 78,
+     "cmp": "ENE"
+    },
+    {
+     "spd": 6.7,
+     "dir": 72,
+     "cmp": "ENE"
+    },
+    {
+     "spd": 6.6,
+     "dir": 112,
+     "cmp": "ESE"
+    },
+    {
+     "spd": 4.3,
+     "dir": 106,
+     "cmp": "ESE"
+    },
+    {
+     "spd": 3.5,
+     "dir": 150,
+     "cmp": "SSE"
+    },
+    {
+     "spd": 2.5,
+     "dir": 183,
+     "cmp": "S"
+    },
+    {
+     "spd": 3.3,
+     "dir": 86,
+     "cmp": "E"
+    }
+   ],
+   "mean_spd": 5.51,
+   "net_dir": 95,
+   "net_cmp": "E",
+   "resultant_spd": 4.68,
+   "steadiness": 0.85,
+   "hours_lt2": 0,
+   "peak": {
+    "spd": 9.9,
+    "cmp": "ENE",
+    "time": "Wed 19:00"
+   },
+   "rank": 25
+  },
+  {
+   "district": "Rahim Yar Khan",
+   "division": "Bahawalpur",
+   "airport": "OPRK",
+   "blocks": [
+    {
+     "spd": 3.1,
+     "dir": 321,
+     "cmp": "NW"
+    },
+    {
+     "spd": 4.5,
+     "dir": 124,
+     "cmp": "SE"
+    },
+    {
+     "spd": 4.1,
+     "dir": 190,
+     "cmp": "S"
+    },
+    {
+     "spd": 3.7,
+     "dir": 333,
+     "cmp": "NNW"
+    },
+    {
+     "spd": 3.6,
+     "dir": 31,
+     "cmp": "NNE"
+    },
+    {
+     "spd": 2.3,
+     "dir": 166,
+     "cmp": "SSE"
+    },
+    {
+     "spd": 11.3,
+     "dir": 211,
+     "cmp": "SSW"
+    },
+    {
+     "spd": 13.7,
+     "dir": 204,
+     "cmp": "SSW"
+    }
+   ],
+   "mean_spd": 5.77,
+   "net_dir": 204,
+   "net_cmp": "SSW",
+   "resultant_spd": 2.98,
+   "steadiness": 0.52,
+   "hours_lt2": 4,
+   "peak": {
+    "spd": 15.9,
+    "cmp": "SSW",
+    "time": "Thu 14:00"
+   },
+   "rank": 26
+  },
+  {
+   "district": "Okara",
+   "division": "Sahiwal",
+   "airport": null,
+   "blocks": [
+    {
+     "spd": 7.0,
+     "dir": 65,
+     "cmp": "ENE"
+    },
+    {
+     "spd": 7.8,
+     "dir": 71,
+     "cmp": "ENE"
+    },
+    {
+     "spd": 6.3,
+     "dir": 73,
+     "cmp": "ENE"
+    },
+    {
+     "spd": 6.1,
+     "dir": 115,
+     "cmp": "ESE"
+    },
+    {
+     "spd": 6.6,
+     "dir": 121,
+     "cmp": "ESE"
+    },
+    {
+     "spd": 6.1,
+     "dir": 139,
+     "cmp": "SE"
+    },
+    {
+     "spd": 4.0,
+     "dir": 172,
+     "cmp": "S"
+    },
+    {
+     "spd": 3.2,
+     "dir": 133,
+     "cmp": "SE"
+    }
+   ],
+   "mean_spd": 5.88,
+   "net_dir": 103,
+   "net_cmp": "ESE",
+   "resultant_spd": 4.76,
+   "steadiness": 0.81,
+   "hours_lt2": 0,
+   "peak": {
+    "spd": 8.8,
+    "cmp": "ENE",
+    "time": "Wed 20:00"
+   },
+   "rank": 27
+  },
+  {
+   "district": "Jhang",
+   "division": "Faisalabad",
+   "airport": null,
+   "blocks": [
+    {
+     "spd": 9.1,
+     "dir": 65,
+     "cmp": "ENE"
+    },
+    {
+     "spd": 8.1,
+     "dir": 63,
+     "cmp": "ENE"
+    },
+    {
+     "spd": 7.4,
+     "dir": 63,
+     "cmp": "ENE"
+    },
+    {
+     "spd": 5.6,
+     "dir": 69,
+     "cmp": "ENE"
+    },
+    {
+     "spd": 5.6,
+     "dir": 68,
+     "cmp": "ENE"
+    },
+    {
+     "spd": 4.8,
+     "dir": 123,
+     "cmp": "ESE"
+    },
+    {
+     "spd": 3.7,
+     "dir": 163,
+     "cmp": "SSE"
+    },
+    {
+     "spd": 3.0,
+     "dir": 132,
+     "cmp": "SE"
+    }
+   ],
+   "mean_spd": 5.91,
+   "net_dir": 79,
+   "net_cmp": "ENE",
+   "resultant_spd": 4.87,
+   "steadiness": 0.82,
+   "hours_lt2": 0,
+   "peak": {
+    "spd": 10.0,
+    "cmp": "ENE",
+    "time": "Wed 19:00"
+   },
+   "rank": 28
+  },
+  {
+   "district": "Murree",
+   "division": "Rawalpindi",
+   "airport": null,
+   "blocks": [
+    {
+     "spd": 2.5,
+     "dir": 4,
+     "cmp": "N"
+    },
+    {
+     "spd": 2.7,
+     "dir": 15,
+     "cmp": "NNE"
+    },
+    {
+     "spd": 2.8,
+     "dir": 10,
+     "cmp": "N"
+    },
+    {
+     "spd": 1.8,
+     "dir": 18,
+     "cmp": "NNE"
+    },
+    {
+     "spd": 8.6,
+     "dir": 26,
+     "cmp": "NNE"
+    },
+    {
+     "spd": 10.2,
+     "dir": 22,
+     "cmp": "NNE"
+    },
+    {
+     "spd": 9.8,
+     "dir": 75,
+     "cmp": "ENE"
+    },
+    {
+     "spd": 9.5,
+     "dir": 50,
+     "cmp": "NE"
+    }
+   ],
+   "mean_spd": 5.99,
+   "net_dir": 37,
+   "net_cmp": "NE",
+   "resultant_spd": 5.4,
+   "steadiness": 0.9,
+   "hours_lt2": 2,
+   "peak": {
+    "spd": 11.8,
+    "cmp": "E",
+    "time": "Thu 13:00"
+   },
+   "rank": 29
+  },
+  {
+   "district": "Layyah",
+   "division": "D.G. Khan",
+   "airport": null,
+   "blocks": [
+    {
+     "spd": 4.3,
+     "dir": 337,
+     "cmp": "NNW"
+    },
+    {
+     "spd": 7.4,
+     "dir": 337,
+     "cmp": "NNW"
+    },
+    {
+     "spd": 9.0,
+     "dir": 342,
+     "cmp": "NNW"
+    },
+    {
+     "spd": 7.6,
+     "dir": 343,
+     "cmp": "NNW"
+    },
+    {
+     "spd": 4.7,
+     "dir": 343,
+     "cmp": "NNW"
+    },
+    {
+     "spd": 2.8,
+     "dir": 355,
+     "cmp": "N"
+    },
+    {
+     "spd": 5.1,
+     "dir": 63,
+     "cmp": "ENE"
+    },
+    {
+     "spd": 7.2,
+     "dir": 11,
+     "cmp": "N"
+    }
+   ],
+   "mean_spd": 6.0,
+   "net_dir": 353,
+   "net_cmp": "N",
+   "resultant_spd": 5.33,
+   "steadiness": 0.89,
+   "hours_lt2": 1,
+   "peak": {
+    "spd": 9.2,
+    "cmp": "NNW",
+    "time": "Thu 01:00"
+   },
+   "rank": 30
+  },
+  {
+   "district": "Rajanpur",
+   "division": "D.G. Khan",
+   "airport": null,
+   "blocks": [
+    {
+     "spd": 4.3,
+     "dir": 264,
+     "cmp": "W"
+    },
+    {
+     "spd": 4.5,
+     "dir": 27,
+     "cmp": "NNE"
+    },
+    {
+     "spd": 7.7,
+     "dir": 15,
+     "cmp": "NNE"
+    },
+    {
+     "spd": 7.3,
+     "dir": 10,
+     "cmp": "N"
+    },
+    {
+     "spd": 7.5,
+     "dir": 20,
+     "cmp": "NNE"
+    },
+    {
+     "spd": 3.3,
+     "dir": 16,
+     "cmp": "NNE"
+    },
+    {
+     "spd": 5.6,
+     "dir": 215,
+     "cmp": "SW"
+    },
+    {
+     "spd": 8.5,
+     "dir": 215,
+     "cmp": "SW"
+    }
+   ],
+   "mean_spd": 6.07,
+   "net_dir": 350,
+   "net_cmp": "N",
+   "resultant_spd": 2.12,
+   "steadiness": 0.35,
+   "hours_lt2": 1,
+   "peak": {
+    "spd": 10.9,
+    "cmp": "SW",
+    "time": "Thu 15:00"
+   },
+   "rank": 31
+  },
+  {
+   "district": "Jhelum",
+   "division": "Rawalpindi",
+   "airport": null,
+   "blocks": [
+    {
+     "spd": 6.0,
+     "dir": 288,
+     "cmp": "WNW"
+    },
+    {
+     "spd": 5.3,
+     "dir": 331,
+     "cmp": "NNW"
+    },
+    {
+     "spd": 5.8,
+     "dir": 324,
+     "cmp": "NW"
+    },
+    {
+     "spd": 6.3,
+     "dir": 323,
+     "cmp": "NW"
+    },
+    {
+     "spd": 6.9,
+     "dir": 310,
+     "cmp": "NW"
+    },
+    {
+     "spd": 4.0,
+     "dir": 339,
+     "cmp": "NNW"
+    },
+    {
+     "spd": 5.3,
+     "dir": 44,
+     "cmp": "NE"
+    },
+    {
+     "spd": 10.1,
+     "dir": 32,
+     "cmp": "NNE"
+    }
+   ],
+   "mean_spd": 6.2,
+   "net_dir": 335,
+   "net_cmp": "NNW",
+   "resultant_spd": 4.51,
+   "steadiness": 0.73,
+   "hours_lt2": 0,
+   "peak": {
+    "spd": 16.8,
+    "cmp": "N",
+    "time": "Thu 17:00"
+   },
+   "rank": 32
+  },
+  {
+   "district": "Taunsa",
+   "division": "D.G. Khan",
+   "airport": null,
+   "blocks": [
+    {
+     "spd": 6.2,
+     "dir": 324,
+     "cmp": "NW"
+    },
+    {
+     "spd": 6.9,
+     "dir": 332,
+     "cmp": "NNW"
+    },
+    {
+     "spd": 8.6,
+     "dir": 336,
+     "cmp": "NNW"
+    },
+    {
+     "spd": 7.1,
+     "dir": 338,
+     "cmp": "NNW"
+    },
+    {
+     "spd": 5.2,
+     "dir": 335,
+     "cmp": "NNW"
+    },
+    {
+     "spd": 5.5,
+     "dir": 353,
+     "cmp": "N"
+    },
+    {
+     "spd": 2.5,
+     "dir": 61,
+     "cmp": "ENE"
+    },
+    {
+     "spd": 7.9,
+     "dir": 328,
+     "cmp": "NNW"
+    }
+   ],
+   "mean_spd": 6.23,
+   "net_dir": 335,
+   "net_cmp": "NNW",
+   "resultant_spd": 5.76,
+   "steadiness": 0.92,
+   "hours_lt2": 1,
+   "peak": {
+    "spd": 10.5,
+    "cmp": "NNW",
+    "time": "Thu 17:00"
+   },
+   "rank": 33
+  },
+  {
+   "district": "Multan",
+   "division": "Multan",
+   "airport": "OPMT",
+   "blocks": [
+    {
+     "spd": 7.1,
+     "dir": 352,
+     "cmp": "N"
+    },
+    {
+     "spd": 8.3,
+     "dir": 8,
+     "cmp": "N"
+    },
+    {
+     "spd": 7.3,
+     "dir": 356,
+     "cmp": "N"
+    },
+    {
+     "spd": 7.3,
+     "dir": 336,
+     "cmp": "NNW"
+    },
+    {
+     "spd": 5.2,
+     "dir": 331,
+     "cmp": "NNW"
+    },
+    {
+     "spd": 2.5,
+     "dir": 302,
+     "cmp": "WNW"
+    },
+    {
+     "spd": 5.5,
+     "dir": 244,
+     "cmp": "WSW"
+    },
+    {
+     "spd": 9.9,
+     "dir": 214,
+     "cmp": "SW"
+    }
+   ],
+   "mean_spd": 6.62,
+   "net_dir": 323,
+   "net_cmp": "NW",
+   "resultant_spd": 3.67,
+   "steadiness": 0.55,
+   "hours_lt2": 1,
+   "peak": {
+    "spd": 10.6,
+    "cmp": "SSW",
+    "time": "Thu 17:00"
+   },
+   "taf": {
+    "icao": "OPMT",
+    "hours": 24,
+    "mean_spd": 9.3,
+    "net_cmp": "NE",
+    "net_dir": 50
+   },
+   "rank": 34
+  },
+  {
+   "district": "Vehari",
+   "division": "Multan",
+   "airport": null,
+   "blocks": [
+    {
+     "spd": 2.7,
+     "dir": 194,
+     "cmp": "SSW"
+    },
+    {
+     "spd": 5.7,
+     "dir": 101,
+     "cmp": "E"
+    },
+    {
+     "spd": 4.8,
+     "dir": 88,
+     "cmp": "E"
+    },
+    {
+     "spd": 6.3,
+     "dir": 107,
+     "cmp": "ESE"
+    },
+    {
+     "spd": 6.8,
+     "dir": 134,
+     "cmp": "SE"
+    },
+    {
+     "spd": 6.6,
+     "dir": 181,
+     "cmp": "S"
+    },
+    {
+     "spd": 10.6,
+     "dir": 221,
+     "cmp": "SW"
+    },
+    {
+     "spd": 9.5,
+     "dir": 220,
+     "cmp": "SW"
+    }
+   ],
+   "mean_spd": 6.62,
+   "net_dir": 166,
+   "net_cmp": "SSE",
+   "resultant_spd": 3.96,
+   "steadiness": 0.6,
+   "hours_lt2": 2,
+   "peak": {
+    "spd": 13.8,
+    "cmp": "SW",
+    "time": "Thu 15:00"
+   },
+   "rank": 35
+  },
+  {
+   "district": "Pakpattan",
+   "division": "Sahiwal",
+   "airport": null,
+   "blocks": [
+    {
+     "spd": 8.0,
+     "dir": 66,
+     "cmp": "ENE"
+    },
+    {
+     "spd": 7.8,
+     "dir": 80,
+     "cmp": "E"
+    },
+    {
+     "spd": 5.6,
+     "dir": 82,
+     "cmp": "E"
+    },
+    {
+     "spd": 5.9,
+     "dir": 115,
+     "cmp": "ESE"
+    },
+    {
+     "spd": 8.5,
+     "dir": 145,
+     "cmp": "SE"
+    },
+    {
+     "spd": 8.4,
+     "dir": 167,
+     "cmp": "SSE"
+    },
+    {
+     "spd": 7.8,
+     "dir": 217,
+     "cmp": "SW"
+    },
+    {
+     "spd": 3.7,
+     "dir": 226,
+     "cmp": "SW"
+    }
+   ],
+   "mean_spd": 6.97,
+   "net_dir": 129,
+   "net_cmp": "SE",
+   "resultant_spd": 4.07,
+   "steadiness": 0.58,
+   "hours_lt2": 1,
+   "peak": {
+    "spd": 10.0,
+    "cmp": "SSE",
+    "time": "Thu 08:00"
+   },
+   "rank": 36
+  },
+  {
+   "district": "Kot Addu",
+   "division": "D.G. Khan",
+   "airport": null,
+   "blocks": [
+    {
+     "spd": 5.3,
+     "dir": 346,
+     "cmp": "NNW"
+    },
+    {
+     "spd": 8.0,
+     "dir": 344,
+     "cmp": "NNW"
+    },
+    {
+     "spd": 10.2,
+     "dir": 341,
+     "cmp": "NNW"
+    },
+    {
+     "spd": 9.3,
+     "dir": 345,
+     "cmp": "NNW"
+    },
+    {
+     "spd": 7.7,
+     "dir": 351,
+     "cmp": "N"
+    },
+    {
+     "spd": 4.9,
+     "dir": 356,
+     "cmp": "N"
+    },
+    {
+     "spd": 4.4,
+     "dir": 145,
+     "cmp": "SE"
+    },
+    {
+     "spd": 6.6,
+     "dir": 290,
+     "cmp": "WNW"
+    }
+   ],
+   "mean_spd": 7.07,
+   "net_dir": 346,
+   "net_cmp": "NNW",
+   "resultant_spd": 5.35,
+   "steadiness": 0.76,
+   "hours_lt2": 0,
+   "peak": {
+    "spd": 11.2,
+    "cmp": "NNW",
+    "time": "Thu 01:00"
+   },
+   "rank": 37
+  },
+  {
+   "district": "Muzaffargarh",
+   "division": "D.G. Khan",
+   "airport": null,
+   "blocks": [
+    {
+     "spd": 4.5,
+     "dir": 359,
+     "cmp": "N"
+    },
+    {
+     "spd": 9.8,
+     "dir": 3,
+     "cmp": "N"
+    },
+    {
+     "spd": 9.1,
+     "dir": 347,
+     "cmp": "NNW"
+    },
+    {
+     "spd": 9.4,
+     "dir": 346,
+     "cmp": "NNW"
+    },
+    {
+     "spd": 6.7,
+     "dir": 345,
+     "cmp": "NNW"
+    },
+    {
+     "spd": 3.4,
+     "dir": 343,
+     "cmp": "NNW"
+    },
+    {
+     "spd": 3.7,
+     "dir": 210,
+     "cmp": "SSW"
+    },
+    {
+     "spd": 10.3,
+     "dir": 203,
+     "cmp": "SSW"
+    }
+   ],
+   "mean_spd": 7.12,
+   "net_dir": 338,
+   "net_cmp": "NNW",
+   "resultant_spd": 3.97,
+   "steadiness": 0.56,
+   "hours_lt2": 1,
+   "peak": {
+    "spd": 12.3,
+    "cmp": "SSW",
+    "time": "Thu 16:00"
+   },
+   "rank": 38
+  },
+  {
+   "district": "Bahawalnagar",
+   "division": "Bahawalpur",
+   "airport": null,
+   "blocks": [
+    {
+     "spd": 7.0,
+     "dir": 93,
+     "cmp": "E"
+    },
+    {
+     "spd": 6.4,
+     "dir": 100,
+     "cmp": "E"
+    },
+    {
+     "spd": 5.8,
+     "dir": 108,
+     "cmp": "ESE"
+    },
+    {
+     "spd": 6.7,
+     "dir": 115,
+     "cmp": "ESE"
+    },
+    {
+     "spd": 9.8,
+     "dir": 143,
+     "cmp": "SE"
+    },
+    {
+     "spd": 8.6,
+     "dir": 176,
+     "cmp": "S"
+    },
+    {
+     "spd": 9.2,
+     "dir": 222,
+     "cmp": "SW"
+    },
+    {
+     "spd": 6.1,
+     "dir": 220,
+     "cmp": "SW"
+    }
+   ],
+   "mean_spd": 7.47,
+   "net_dir": 147,
+   "net_cmp": "SSE",
+   "resultant_spd": 4.95,
+   "steadiness": 0.66,
+   "hours_lt2": 0,
+   "peak": {
+    "spd": 11.1,
+    "cmp": "SSE",
+    "time": "Thu 08:00"
+   },
+   "rank": 39
+  },
+  {
+   "district": "Sahiwal",
+   "division": "Sahiwal",
+   "airport": null,
+   "blocks": [
+    {
+     "spd": 10.0,
+     "dir": 71,
+     "cmp": "ENE"
+    },
+    {
+     "spd": 9.1,
+     "dir": 79,
+     "cmp": "E"
+    },
+    {
+     "spd": 7.6,
+     "dir": 84,
+     "cmp": "E"
+    },
+    {
+     "spd": 8.3,
+     "dir": 119,
+     "cmp": "ESE"
+    },
+    {
+     "spd": 8.4,
+     "dir": 140,
+     "cmp": "SE"
+    },
+    {
+     "spd": 6.4,
+     "dir": 162,
+     "cmp": "SSE"
+    },
+    {
+     "spd": 6.1,
+     "dir": 201,
+     "cmp": "SSW"
+    },
+    {
+     "spd": 7.3,
+     "dir": 162,
+     "cmp": "SSE"
+    }
+   ],
+   "mean_spd": 7.9,
+   "net_dir": 120,
+   "net_cmp": "ESE",
+   "resultant_spd": 5.77,
+   "steadiness": 0.73,
+   "hours_lt2": 0,
+   "peak": {
+    "spd": 11.1,
+    "cmp": "E",
+    "time": "Wed 20:00"
+   },
+   "rank": 40
+  },
+  {
+   "district": "Dera Ghazi Khan",
+   "division": "D.G. Khan",
+   "airport": "OPDG",
+   "blocks": [
+    {
+     "spd": 7.0,
+     "dir": 353,
+     "cmp": "N"
+    },
+    {
+     "spd": 9.9,
+     "dir": 4,
+     "cmp": "N"
+    },
+    {
+     "spd": 10.6,
+     "dir": 8,
+     "cmp": "N"
+    },
+    {
+     "spd": 10.0,
+     "dir": 7,
+     "cmp": "N"
+    },
+    {
+     "spd": 7.9,
+     "dir": 11,
+     "cmp": "N"
+    },
+    {
+     "spd": 4.7,
+     "dir": 9,
+     "cmp": "N"
+    },
+    {
+     "spd": 8.6,
+     "dir": 186,
+     "cmp": "S"
+    },
+    {
+     "spd": 14.6,
+     "dir": 192,
+     "cmp": "SSW"
+    }
+   ],
+   "mean_spd": 9.15,
+   "net_dir": 2,
+   "net_cmp": "N",
+   "resultant_spd": 3.34,
+   "steadiness": 0.36,
+   "hours_lt2": 0,
+   "peak": {
+    "spd": 17.0,
+    "cmp": "S",
+    "time": "Thu 15:00"
+   },
+   "rank": 41
+  }
+ ],
+ "tafs": [
+  "OPFA",
+  "OPIS",
+  "OPLA",
+  "OPMT",
+  "OPST"
+ ]
+}
